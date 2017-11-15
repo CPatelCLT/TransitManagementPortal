@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../GroupProjectUI/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../GroupProjectUI/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../../GroupProjectUI/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../GroupProjectUI/css/dashboard.css">
     <title>Dashboard</title>
 </head>
 <body>
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="dashboard.html">Dashboard</a>
+        <a class="navbar-brand" href="../dashboard.html">Dashboard</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,9 +31,9 @@
 
 <div class="container-fluid">
     <div class="row">
-        <?php include("adminSidebar.php"); ?>
+        <?php include("views\adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <?php include("AdminRouteTable.php"); ?>
+            <?php include("views\AdminRouteTable.php"); ?>
 
         </main>
     </div>

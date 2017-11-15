@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/sticky-footer.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../css/sticky-footer.css">
     <title>Employees Table</title>
 </head>
 <body>
@@ -36,11 +36,4 @@
         </table>
     </div>
 </body>
-<footer class="footer">
-    <div class="container">
-        <form method="post">
-            <button type="submit" style="width: 100%; height: 80px;">Add Employee</button>
-        </form>
-    </div>
-</footer>
 </html>
