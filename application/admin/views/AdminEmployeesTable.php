@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../css/sticky-footer.css">
-    <title>Employees Table</title>
-</head>
-<body>
     <h2>Employees</h2>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -35,5 +28,4 @@
             </tbody>
         </table>
     </div>
-</body>
 </html>

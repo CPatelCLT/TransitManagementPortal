@@ -30,19 +30,19 @@
     </nav>
 </header>
 
-<figure style="width:15%;display:block; margin: auto">
-<img width="100%" src="https://www.fluencecorp.com/wp-content/uploads/2017/07/henry-j-charrabe.png" alt=""></img>
-<figcaption Style="text-align: center; font-size:25px">This is Jim</figcaption>
-</figure>
 
 
-<h1>Welcome to the Transit Manager Homepage</h1>
 
 <div class="container-fluid">
     <div class="row">
         <?php include("views/adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+            <h1>Welcome to the Transit Manager Homepage</h1>
 
+            <figure style="width:50%;display:block; margin: auto">
+                <img width="100%" src="https://www.fluencecorp.com/wp-content/uploads/2017/07/henry-j-charrabe.png" alt=""></img>
+                <figcaption Style="text-align: center; font-size:35px">This is Jim</figcaption>
+            </figure>
         </main>
     </div>
 </div>

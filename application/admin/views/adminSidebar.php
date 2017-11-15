@@ -13,13 +13,22 @@
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Home <span class="sr-only">(Current)</span></a>
-                    <a class="nav-link" href="#">Employees</a>
-                    <a class="nav-link" href="#">Fleet</a>
-                    <a class="nav-link" href="#">Routes</a>
-                    <a class="nav-link" href="#">Schedule</a>
+                    <a class="nav-link" href="admin_home.php">Home <span class="sr-only">(Current)</span></a>
+                    <a class="nav-link" href="admin_employee.php">Employees</a>
+                    <a class="nav-link" href="admin_fleet.php">Fleet</a>
+                    <a class="nav-link" href="admin_routes.php">Routes</a>
+                    <a class="nav-link" href="admin_schedules.php">Schedule</a>
                 </li>
             </ul>
         </nav>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            // Get current url
+            // Select an a element that has the matching href and apply a class of 'active'. Also prepend a - to the content of the link
+            var url = window.location.href;
+            $('.nav-item a[href="'+url+'"]').addClass('active');
+        });
+</script>
 </html>

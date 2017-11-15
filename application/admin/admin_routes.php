@@ -34,19 +34,18 @@
 <div class="container-fluid">
     <div class="row">
         <?php include("views/adminSidebar.php"); ?>
-        <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <?php include("views/AdminRouteTable.php"); ?>
+        <?php include("views/AdminRouteTable.php"); ?>
 
-        </main>
+        <div class="footer">
+            <div class="container">
+                <form method="post">
+                    <button type="submit" style="width: 100%; height: 80px;">Add Routes</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
 </body>
-<footer class="footer">
-    <div class="container">
-        <form method="post">
-            <button type="submit" style="width: 100%; height: 80px;">Add Routes</button>
-        </form>
-    </div>
-</footer>
+
 </html>
