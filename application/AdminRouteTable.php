@@ -1,6 +1,3 @@
-<?php include("adminSidebar.php"); ?>
-<?php include("dashboard.html"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,11 +36,4 @@
         </table>
     </div>
 </body>
-<footer class="footer">
-    <div class="container">
-        <form method="post">
-            <button type="submit" style="width: 100%; height: 80px;">Add Routes</button>
-        </form>
-    </div>
-</footer>
 </html>
