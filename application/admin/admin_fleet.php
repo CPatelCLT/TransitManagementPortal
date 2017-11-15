@@ -44,7 +44,7 @@
 <footer class="footer">
     <div class="container">
         <form method="post">
-            <button type="submit" style="width: 100%; height: 80px;">Add Employee</button>
+            <button class="rounded-0" type="submit" style="width: 100%; height: 80px;">Add Employee</button>
         </form>
     </div>
 </footer>

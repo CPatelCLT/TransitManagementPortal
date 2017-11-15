@@ -29,13 +29,14 @@
         </div>
     </nav>
 </header>
-
+<?php include("views/adminSidebar.php"); ?>
 
 <div class="container-fluid">
     <div class="row">
-        <?php include("views/adminSidebar.php"); ?>
         <?php include("views/AdminRouteTable.php"); ?>
 
+    </div>
+    <div class="row">
         <div class="footer">
             <div class="container">
                 <form method="post">

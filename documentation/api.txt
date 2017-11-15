@@ -1,0 +1,3 @@
+regex = ([a-zA-Z0-9_]+\(|\)\;)
+
+http://nextride.uncc.edu/Services/JSONPRelay.svc/GetRoutesForMapWithScheduleWithEncodedLine?method=jQuery1111024677765148270336_1510757013742&ApiKey=8882812681&_=1510757013743
