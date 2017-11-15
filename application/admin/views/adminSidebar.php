@@ -22,13 +22,20 @@
             </ul>
         </nav>
 </div>
+<!-- This code will highlight the current page -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function($){
-            // Get current url
-            // Select an a element that has the matching href and apply a class of 'active'. Also prepend a - to the content of the link
-            var url = window.location.href;
-            $('.nav-item a[href="'+url+'"]').addClass('active');
-        });
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        // Get current url
+        // Select an a element that has the matching href and apply a class of 'active'. Also prepend a - to the content of the link
+        var url = window.location.href;
+        //alert(url);
+        const regex = /[a-zA-Z0-9_]+\.(php)$/g;
+        var match = regex.exec(url);
+        //alert(match[0]);
+        $('a[href="' + match[0] + '"]').addClass('active');
+
+
+    });
 </script>
 </html>
