@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../GroupProjectUI/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../GroupProjectUI/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../css/sticky-footer.css">
     <title>Dashboard</title>
 </head>
 <body>
@@ -31,9 +32,9 @@
 
 <div class="container-fluid">
     <div class="row">
-        <?php include("views\adminSidebar.php"); ?>
+        <?php include("views/adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <?php include("views\AdminEmployeesTable.php"); ?>
+            <?php include("views/AdminEmployeesTable.php"); ?>
 
         </main>
     </div>
