@@ -1,3 +1,20 @@
+<?php
+
+require_once('../database.php');
+$queryAllEmployees = 'SELECT * FROM employees';
+$statement1 = $db->prepare($queryAllEmployees);
+$statement1->execute();
+$employees = $statement1->fetchAll();
+$statement1->closeCursor();
+
+"<br/>";
+foreach($employees as $employee) {
+    echo $employee['firstname'];
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
