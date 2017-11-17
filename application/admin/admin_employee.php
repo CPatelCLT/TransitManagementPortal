@@ -66,14 +66,23 @@ $employees = getAllEmployees();
     <div class="row">
         <?php include("views/adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <h2 data-spy="affix">Employees</h2>
-            <div class="card-columns">
-                <div class="card text-center">
-                    <img class="card-img" src="..." alt="Card image">
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Add</a>
+            <div class="row" style="padding-right: 15px">
+                <h2 class="col-9">Employees</h2>
+                <!-- TODO Get filtered results, make dropdown actually show options -->
+                <div class="btn-group col-2">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter Roles
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
+                <button class="btn btn-success col-1">Add New</button>
+            </div>
+            <hr/>
+            <div class="card-columns">
                 <?php
                 foreach($employees as $employee) {
                     echo '<div class="card">
@@ -93,11 +102,4 @@ $employees = getAllEmployees();
 </div>
 
 </body>
-<footer class="footer">
-    <div class="container">
-        <form method="post">
-            <button type="submit" style="width: 100%; height: 80px;">Add Employee</button>
-        </form>
-    </div>
-</footer>
 </html>
