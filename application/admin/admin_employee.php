@@ -1,6 +1,6 @@
 <?php
 
-require_once ('../data/employee.php');
+require_once('../data/employee.php');
 
 $employees = getAllEmployees();
 
@@ -19,6 +19,7 @@ $employees = getAllEmployees();
     <style>
         @include "../css/bootstrap.css";
         .card-columns {
+
         @include media-breakpoint-only(xl) {
             column-count: 5;
         }
@@ -31,10 +32,10 @@ $employees = getAllEmployees();
         @include media-breakpoint-only(sm) {
             column-count: 2;
         }
-        column-count: 4;
+        column-count:4;
         }
         .card {
-            height=100px;
+            height = 100px;
         }
     </style>
     <title>Dashboard</title>
@@ -44,14 +45,15 @@ $employees = getAllEmployees();
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="../dashboard.html">Dashboard</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"> <a class="nav-link" href="#"> item1 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="#"> item2 </a></li>
+                <li class="nav-item active"><a class="nav-link" href="#"> item1 </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"> item2 </a></li>
             </ul>
             <form class="form-inline mt-2 mt-md-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -70,7 +72,8 @@ $employees = getAllEmployees();
                 <h2 class="col-9">Employees</h2>
                 <!-- TODO Get filtered results, make dropdown actually show options -->
                 <div class="btn-group col-2">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                         Filter Roles
                     </button>
                     <div class="dropdown-menu">
@@ -84,17 +87,16 @@ $employees = getAllEmployees();
             <hr/>
             <div class="card-columns">
                 <?php
-                foreach($employees as $employee) {
+                foreach ($employees as $employee) {
                     echo '<div class="card">
-                    <img class="card-img-top" src="../img/emp'.sprintf('%03d',$employee['employeeID']).'.jpg" alt="Card image cap">
+                    <img class="card-img-top rounded" src="../img/emp' . sprintf('%03d', $employee['employeeID']) . '.jpg" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">'.$employee['firstname'].' '.$employee['lastname'].'</h4>
-                        <p class="card-text">'.$employee['role'].'</p>
+                        <h4 class="card-title">' . $employee['firstname'] . ' ' . $employee['lastname'] . '</h4>
+                        <p class="card-text">' . $employee['role'] . '</p>
                     </div>
                 </div>';
                 }
                 ?>
-
             </div>
 
         </main>

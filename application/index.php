@@ -7,6 +7,7 @@
     <title>Login</title>
 </head>
 <body background="pics/loginBackground.jpg">
+<div class="jumbotron  d-flex align-items-center">
     <div class="container">
         <form class="form-signin">
             <h2 class="form-signin-heading">Please Sign In</h2>
@@ -20,5 +21,6 @@
             </div>
         </form>
     </div>
+</div>
 </body>
 </html>
