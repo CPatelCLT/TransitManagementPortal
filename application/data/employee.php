@@ -8,11 +8,20 @@
 
 require_once('../database.php');
 
-function getEmployees()
+function getAllEmployees()
 {
     global $db;
-    $queryAllEmployees = 'SELECT * FROM employees';
     $stmt = $db->prepare('SELECT * FROM employees');
+    $stmt->execute();
+    $employees = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $employees;
+}
+
+function getEmployeesByRole($role) {
+    global $db;
+    $stmt = $db->prepare('SELECT * FROM employees where role = :role');
+    $stmt->bindParam(':role', $role);
     $stmt->execute();
     $employees = $stmt->fetchAll();
     $stmt->closeCursor();
@@ -24,10 +33,17 @@ function getEmployeeByID($empID) {
     $stmt = $db->prepare('SELECT * FROM employees where employeeID = :empID');
     $stmt->bindParam(':empID', $empID);
     $stmt->execute();
-    $employee = $stmt->fetch();
+    $employee = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $employee;
 }
-function getEmployeeByUsername($empID) {
 
+function getEmployeeByUsername($username) {
+    global $db;
+    $stmt = $db->prepare('SELECT * FROM employees where username = :username');
+    $stmt->bindParam(':username', $username);
+    $stmt->execute();
+    $employee = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $employee;
 }

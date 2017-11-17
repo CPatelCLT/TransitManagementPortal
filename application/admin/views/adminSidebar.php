@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <div class="container-fluid">
-        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar border border-secondary">
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar border border-secondary" >
             <ul class="nav nav-pills flex-column ">
                 <li class="nav-item ">
                     <a class="nav-link" href="admin_home.php">Home <span class="sr-only">(Current)</span></a>

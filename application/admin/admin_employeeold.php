@@ -1,20 +1,3 @@
-<?php
-
-require_once('../database.php');
-$queryAllEmployees = 'SELECT * FROM employees';
-$statement1 = $db->prepare($queryAllEmployees);
-$statement1->execute();
-$employees = $statement1->fetchAll();
-$statement1->closeCursor();
-
-"<br/>";
-foreach($employees as $employee) {
-    echo $employee['firstname'];
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +34,7 @@ foreach($employees as $employee) {
     <div class="row">
         <?php include("views/adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <?php include("views/AdminEmployeeCards.php"); ?>
+            <?php include("views/AdminEmployeesTable.php"); ?>
 
         </main>
     </div>
