@@ -44,5 +44,5 @@ function getLastBus(){
     $stmt->execute();
     $bus = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $bus['last'];
+    return $bus['last']+1;
 }

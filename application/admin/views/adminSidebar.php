@@ -17,7 +17,7 @@
                     <a class="nav-link" href="admin_employee.php">Employees</a>
                     <a class="nav-link" href="admin_fleet.php">Fleet</a>
                     <a class="nav-link" href="admin_routes.php">Routes</a>
-                    <a class="nav-link" href="admin_schedules.php">Schedule</a>
+                    <a class="nav-link" href="admin_schedule.php">Schedule</a>
                 </li>
             </ul>
         </nav>

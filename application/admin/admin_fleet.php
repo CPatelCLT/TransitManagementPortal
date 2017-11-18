@@ -92,7 +92,7 @@ $buses = getAllBuses();
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add a new Bus</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Bus #<?php echo getLastBus(); ?></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -103,6 +103,7 @@ $buses = getAllBuses();
                                         <label>Mileage</label>
                                         <input type="text" class="form-control" id="inputMiles" aria-describedby="milesHelp" placeholder="Enter miles">
                                         <small id="Mileage hint" class="form-text text-muted">Please enter the number of miles the bus has.</small>
+
                                     </div>
                             </div>
                             <div class="modal-footer">
