@@ -72,20 +72,46 @@ $buses = getAllBuses();
         <?php include("views/adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <div class="row" style="padding-right: 15px">
-                <h2 class="col-9">Employees</h2>
+                <h2 class="col-9">Buses</h2>
                 <!-- TODO Get filtered results, make dropdown actually show options -->
                 <div class="btn-group col-2">
                     <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        Filter Roles
+                        Filter
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">All</a>
+                        <a class="dropdown-item" href="#">Active</a>
+                        <a class="dropdown-item" href="#">Inactive</a>
                     </div>
                 </div>
-                <button class="btn btn-success col-1">Add New</button>
+                <button type="button" class="btn btn-success col-1" data-toggle="modal" data-target="#addBusModal">
+                    Add New
+                </button>
+                <div class="modal fade" id="addBusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add a new Bus</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label>Mileage</label>
+                                        <input type="text" class="form-control" id="inputMiles" aria-describedby="milesHelp" placeholder="Enter miles">
+                                        <small id="Mileage hint" class="form-text text-muted">Please enter the number of miles the bus has.</small>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr/>
             <div class="card-columns">
@@ -106,6 +132,8 @@ $buses = getAllBuses();
         </main>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
