@@ -1,3 +1,9 @@
+<?php
+require_once('../data/employee.php');
+require_once('../data/customer.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

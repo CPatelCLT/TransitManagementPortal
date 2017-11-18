@@ -88,7 +88,7 @@ $employees = getAllEmployees();
             <div class="card-columns">
                 <?php
                 foreach ($employees as $employee) {
-                    echo '<div class="card">
+                    echo '<div class="card border-danger bg-danger">
                     <img class="card-img-top rounded" src="../img/emp' . sprintf('%03d', $employee['employeeID']) . '.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">' . $employee['firstname'] . ' ' . $employee['lastname'] . '</h4>
@@ -102,6 +102,8 @@ $employees = getAllEmployees();
         </main>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
