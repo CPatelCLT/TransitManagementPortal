@@ -40,9 +40,9 @@ function getBusByID($busID) {
 
 function getLastBus(){
     global $db;
-    $stmt = $db->prepare('SELECT max(busID) FROM fleet');
+    $stmt = $db->prepare('SELECT max(busID) as last FROM fleet');
     $stmt->execute();
     $bus = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $bus;
+    return $bus['last'];
 }
