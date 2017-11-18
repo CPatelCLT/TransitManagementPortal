@@ -77,18 +77,76 @@ $employees = getAllEmployees();
                         Filter Roles
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">All</a>
+                        <a class="dropdown-item" href="#">Admin</a>
+                        <a class="dropdown-item" href="#">Drivers</a>
+                        <a class="dropdown-item" href="#">Mechanics</a>
                     </div>
                 </div>
-                <button class="btn btn-success col-1">Add New</button>
+                <button class="btn btn-success col-1"data-toggle="modal" data-target="#addNewEmployee">Add New</button>
+                <!-- Modal -->
+                <div class="modal fade" id="addNewEmployee" tabindex="-1" role="dialog" aria-labelledby="addNewEmployeeLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add New Emploee</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="#" method="post">
+<!--                          username, pass, first,last, role, email-->
+                                    <div class="form-group row">
+                                        <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="admin">Admin
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="driver">Driver
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="role" id="inlineRadio3" value="mechanic">Mechanic
+                                        </label>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr/>
             <div class="card-columns">
                 <?php
                 foreach ($employees as $employee) {
-                    echo '<div class="card border-danger bg-danger">
+                    echo '<div class="card">
                     <img class="card-img-top rounded" src="../img/emp' . sprintf('%03d', $employee['employeeID']) . '.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">' . $employee['firstname'] . ' ' . $employee['lastname'] . '</h4>
