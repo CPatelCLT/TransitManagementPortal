@@ -10,14 +10,14 @@ if(isset($_POST['type'])) {
             break;
         case "employee":
             $user = doEmployeeLogin($_POST['username'], $_POST['password']);
-            var_dump($user);
             break;
     }
     if ($user != false) {
         session_start();
         $_SESSION['user'] = $user;
+        var_dump($user);
         switch ($user['role']) {
-            case 'manager':
+            case 'admin':
                 header("Location: admin/admin_home.php");
                 break;
             case 'driver':
