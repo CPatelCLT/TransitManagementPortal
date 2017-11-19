@@ -6,7 +6,7 @@
  * Time: 2:39 PM
  */
 
-require_once('../database.php');
+require_once('database.php');
 
 function getAllRoutes()
 {

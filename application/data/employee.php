@@ -6,7 +6,7 @@
  * Time: 6:25 PM
  */
 
-require_once('../database.php');
+require_once('database.php');
 
 function getAllEmployees()
 {
@@ -46,4 +46,18 @@ function getEmployeeByUsername($username) {
     $employee = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $employee;
+}
+
+function doEmployeeLogin($username, $password) {
+    global $db;
+    $stmt = $db->prepare('SELECT * FROM employees where username = :username');
+    $stmt->bindParam(':username', $username);
+    $stmt->execute();
+    $employee = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    if($employee['password'] != $password) {
+        return false;
+    } else {
+        return $employee;
+    }
 }

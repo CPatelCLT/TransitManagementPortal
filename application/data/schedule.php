@@ -6,7 +6,7 @@
  * Time: 9:07 PM
  */
 
-require_once('../database.php');
+require_once('database.php');
 
 function getAllSchedule()
 {
