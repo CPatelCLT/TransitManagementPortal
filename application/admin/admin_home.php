@@ -35,7 +35,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <?php include("views/adminSidebar.php"); ?>
+        <?php include("adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <h1>Welcome to the Transit Manager Homepage</h1>
 

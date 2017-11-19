@@ -66,12 +66,12 @@ $employees = getAllEmployees();
 
 <div class="container-fluid">
     <div class="row">
-        <?php include("views/adminSidebar.php"); ?>
+        <?php include("adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <div class="row" style="padding-right: 15px">
                 <h2 class="col-9">Employees</h2>
                 <!-- TODO Get filtered results, make dropdown actually show options -->
-                <div class="btn-group col-2">
+                <div class="btn-group col-sm-2">
                     <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         Filter Roles
@@ -83,7 +83,7 @@ $employees = getAllEmployees();
                         <a class="dropdown-item" href="#">Mechanics</a>
                     </div>
                 </div>
-                <button class="btn btn-success col-1"data-toggle="modal" data-target="#addNewEmployee">Add New</button>
+                <button class="btn btn-success col-sm-1"data-toggle="modal" data-target="#addNewEmployee">Add New</button>
                 <!-- Modal -->
                 <div class="modal fade" id="addNewEmployee" tabindex="-1" role="dialog" aria-labelledby="addNewEmployeeLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -111,9 +111,9 @@ $employees = getAllEmployees();
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                            <input type="password" class="form-control" id="inputEmail" placeholder="Email">
                                         </div>
                                     </div>
                                     <div class="form-check form-check-inline">

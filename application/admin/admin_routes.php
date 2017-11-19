@@ -66,7 +66,7 @@ $routes = getAllRoutes();
 
 <div class="container-fluid">
     <div class="row">
-        <?php include("views/adminSidebar.php"); ?>
+        <?php include("adminSidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <div class="row" style="padding-right: 15px">
                 <h2 class="col-9">Employees</h2>
