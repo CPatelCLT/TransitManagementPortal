@@ -65,7 +65,7 @@ $schedules = getAllSchedule();
 
 <div class="container-fluid">
     <div class="row">
-        <?php include("adminSidebar.php"); ?>
+        <?php include("admin_sidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <div class="row" style="padding-right: 15px">
                 <h2 class="col-9">Employees</h2>
