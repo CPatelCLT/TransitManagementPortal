@@ -14,12 +14,12 @@
         <ul class="nav nav-pills flex-column ">
             <li class="nav-item ">
                 <a class="nav-link" href="driver_home.php">Home</a>
-                <a class="nav-link" href="driver_profile.php">Employees</a>
-                <a class="nav-link" href="driver_bus.php">Fleet</a>
-                <a class="nav-link" href="driver_routes.php">Routes</a>
+                <a class="nav-link" href="driver_profile.php">Profile</a>
+                <a class="nav-link" href="driver_bus.php">Bus</a>
+                <a class="nav-link" href="driver_routes.php">Route</a>
                 <a class="nav-link" href="driver_schedule.php">Schedule</a>
             </li>
-        </ul>
+        </ul>s
     </nav>
 </div>
 <!-- This code will highlight the current page -->
