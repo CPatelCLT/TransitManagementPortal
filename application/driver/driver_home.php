@@ -1,12 +1,3 @@
-<?php
-session_start();
-if (isset($_SESSION['user'])) {
-    $user = $_SESSION['user'];
-    echo $user['employeeID'];
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,35 +34,16 @@ if (isset($_SESSION['user'])) {
 
 
 
-
-
-<div class="row">
-    <?php include("driver_sidebar.php"); ?>
-    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-                <div class="card w-75"">
-                    <div class="card-body">
-                        <!--TODO Fix the text alignment of the title -->
-                        <img class="rounded float-right clearfix" width="15%" src=<?php echo '../img/emp' .sprintf('%03d', $user['employeeID']) .'.jpg'?> alt="Card image cap">
-                        <h4 class="card-title align-text-bottom"><?php echo $user['firstname']." ".$user['lastname'] ?> </h4>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">User Name:<span class="float-right"><?php echo $user['username']?></span></li>
-                        <li class="list-group-item">Password:<span class="float-right"><?php echo $user['password']?></span></li>
-                        <li class="list-group-item">Email:<span class="float-right"><?php echo $user['email']?></span></li>
-                    </ul>
-                    <div class="card-body">
-                    </div>
-                </div>
-
-            </div>
-        </form>
-        </div>
-    </main>
-</div>
+    <div class="row">
+        <?php include("driver_sidebar.php"); ?>
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+            <h1 class="text-center">Welcome to the Driver Page</h1>
+                    <img src="../img/driverhome.jpg" class="d-block mx-auto img-responsive">
+        </main>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
-
