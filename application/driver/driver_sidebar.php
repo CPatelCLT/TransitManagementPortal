@@ -19,7 +19,7 @@
                 <a class="nav-link" href="driver_routes.php">Route</a>
                 <a class="nav-link" href="driver_schedule.php">Schedule</a>
             </li>
-        </ul>s
+        </ul>
     </nav>
 </div>
 <!-- This code will highlight the current page -->

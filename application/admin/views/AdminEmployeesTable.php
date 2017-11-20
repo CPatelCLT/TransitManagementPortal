@@ -20,8 +20,8 @@
                     <td>test</td>
                     <td>
                         <form method="post">
-                            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Update</button>
-                            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Delete</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Update</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Delete</button>
                         </form>
                     </td>
                 </tr>

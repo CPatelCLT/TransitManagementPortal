@@ -61,3 +61,12 @@ function doEmployeeLogin($username, $password) {
         return $employee;
     }
 }
+function updateEmployee($id, $username, $password, $email, $role, $firstname, $lastname) {
+    // TODO Implement update function
+}
+function insertEmployee($username, $password, $email, $role, $firstname, $lastname) {
+    // TODO Implement insert function
+}
+function deleteEmployee($id){
+    // TODO Implement delete function
+}

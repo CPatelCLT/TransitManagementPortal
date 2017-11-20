@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+<main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
     <h2>Routes</h2>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -21,8 +21,8 @@
                     <td>test</td>
                     <td>
                         <form method="post">
-                            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Update</button>
-                            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Delete</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Update</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Delete</button>
                         </form>
                     </td>
                 </tr>

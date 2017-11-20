@@ -3,7 +3,7 @@
 
 <head>
     <title>Transit Portal</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 
 <!-- the body section -->

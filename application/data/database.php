@@ -9,4 +9,3 @@ try {
     include('database_error.php');
     exit();
 }
-?>
