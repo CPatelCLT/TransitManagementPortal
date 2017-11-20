@@ -13,9 +13,9 @@ function getAllCustomers()
     global $db;
     $stmt = $db->prepare('SELECT * FROM customers');
     $stmt->execute();
-    $employees = $stmt->fetchAll();
+    $customers = $stmt->fetchAll();
     $stmt->closeCursor();
-    return $employees;
+    return $customers;
 }
 
 function getCustomerByID($custID) {
@@ -23,9 +23,9 @@ function getCustomerByID($custID) {
     $stmt = $db->prepare('SELECT * FROM customers where userID = :ID');
     $stmt->bindParam(':ID', $custID);
     $stmt->execute();
-    $employee = $stmt->fetch(PDO::FETCH_ASSOC);
+    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $employee;
+    return $customer;
 }
 
 function getCustomerByUsername($username) {
@@ -33,9 +33,9 @@ function getCustomerByUsername($username) {
     $stmt = $db->prepare('SELECT * FROM customers where username = :username');
     $stmt->bindParam(':username', $username);
     $stmt->execute();
-    $employee = $stmt->fetch(PDO::FETCH_ASSOC);
+    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $employee;
+    return $customer;
 }
 
 function doCustomerLogin($username, $password) {
@@ -43,18 +43,18 @@ function doCustomerLogin($username, $password) {
     $stmt = $db->prepare('SELECT * FROM customers where username = :username');
     $stmt->bindParam(':username', $username);
     $stmt->execute();
-    $employee = $stmt->fetch(PDO::FETCH_ASSOC);
+    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    if($employee['password'] != $password) {
+    if($customer['password'] != $password) {
         return false;
     } else {
-        return $employee;
+        return $customer;
     }
 }
-function updateCustomer($id, $username, $password, $email, $role, $firstname, $lastname) {
+function updateCustomer($id, $username, $password, $email) {
     // TODO Implement update function
 }
-function insertCustomer($username, $password, $email, $role, $firstname, $lastname) {
+function insertCustomer($username, $password, $email) {
     // TODO Implement insert function
 }
 function deleteCustomer($id){

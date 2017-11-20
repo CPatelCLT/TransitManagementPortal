@@ -62,11 +62,37 @@ function doEmployeeLogin($username, $password) {
     }
 }
 function updateEmployee($id, $username, $password, $email, $role, $firstname, $lastname) {
-    // TODO Implement update function
+    global $db;
+    $stmt = $db->prepare("UPDATE employees SET username=:username, password=:password, firstname=:firstname, lastname=:lastname, role=:role, email=:email WHERE employeeID=:employeeID");
+    $stmt->bindParam(':employeeID', $id);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $password);
+    $stmt->bindParam(':firstname', $email);
+    $stmt->bindParam(':lastname', $role);
+    $stmt->bindParam(':role', $firstname);
+    $stmt->bindParam(':email', $lastname);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $stmt->rowCount();
 }
 function insertEmployee($username, $password, $email, $role, $firstname, $lastname) {
-    // TODO Implement insert function
+    global $db;
+    $stmt = $db->prepare("INSERT INTO employees (username, password, firstname, lastname, role, email) VALUES (:username, :password, :firstname, :lastname, :role, :email)");
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $password);
+    $stmt->bindParam(':firstname', $email);
+    $stmt->bindParam(':lastname', $role);
+    $stmt->bindParam(':role', $firstname);
+    $stmt->bindParam(':email', $lastname);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $db->lastInsertID();
 }
 function deleteEmployee($id){
-    // TODO Implement delete function
+    global $db;
+    $stmt = $db->prepare('DELETE FROM employees where employeeID = :employeeID');
+    $stmt->bindParam(':employeeID', $id);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $stmt->rowCount();
 }

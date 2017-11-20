@@ -17,3 +17,23 @@ function getAllSchedule()
     $stmt->closeCursor();
     return $schedule;
 }
+
+function getSchedulesByEmployee($employeeID) {
+    global $db;
+    $stmt = $db->prepare('SELECT * FROM schedule where employeeID = :employeeID');
+    $stmt->bindParam(':employeeID', $employeeID);
+    $stmt->execute();
+    $schedules = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $schedules;
+}
+
+function getCurrentEmpSchedule($employeeID) {
+    global $db;
+    $stmt = $db->prepare('SELECT * FROM schedule where employeeID = :employeeID');
+    $stmt->bindParam(':employeeID', $employeeID);
+    $stmt->execute();
+    $schedule = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $schedule;
+}
