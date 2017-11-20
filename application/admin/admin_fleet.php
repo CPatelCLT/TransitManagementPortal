@@ -116,13 +116,21 @@ $buses = getAllBuses();
             </div>
             <hr/>
             <div class="card-columns">
+
                 <?php
                 foreach ($buses as $bus) {
-                  if ($bus['active'] == "1"){ echo '<div class="card border-success text-success">';}
-                   else{ echo '<div class="card border-danger text-danger">';}
+                    echo '<div class="card">';
+//                      <span class="badge badge-pill badge-success">Success</span>
+//                      <span class="badge badge-pill badge-danger">Danger</span>
+
                     echo'<img class="card-img-top rounded" src="../img/bus' . sprintf('%03d', $bus['busID']) . '.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Bus ' .$bus['busID'].'</h4>
+                    <div class="card-body">';
+                    if ($bus['active'] == "1"){
+                        echo '<span class="badge badge-pill badge-success float-right" style="font-size: 1.5em;">Active</span>';
+                    } else {
+                        echo '<span class="badge badge-pill badge-danger float-right" style="font-size: 1.5em;">Inactive</span>';
+                    }
+                        echo '<h4 class="card-title">Bus ' .$bus['busID'].'</h4>
                         <p class="card-text">' . $bus['mileage'] . ' miles</p>
                     </div>
                 </div>';

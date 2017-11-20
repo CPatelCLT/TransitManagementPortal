@@ -69,21 +69,24 @@ $employees = getAllEmployees();
         <?php include("admin_sidebar.php"); ?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <div class="row" style="padding-right: 15px">
-                <h2 class="col-9">Employees</h2>
+                <h2>Employees</h2>
                 <!-- TODO Get filtered results, make dropdown actually show options -->
-                <div class="btn-group col-sm-2">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        Filter Roles
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">All</a>
-                        <a class="dropdown-item" href="#">Admin</a>
-                        <a class="dropdown-item" href="#">Drivers</a>
-                        <a class="dropdown-item" href="#">Mechanics</a>
+
+                <div class="btn-group float-right" role="group">
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Filter Roles
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">All</a>
+                            <a class="dropdown-item" href="#">Admin</a>
+                            <a class="dropdown-item" href="#">Drivers</a>
+                            <a class="dropdown-item" href="#">Mechanics</a>
+                        </div>
                     </div>
+                    <button class="btn btn-success"data-toggle="modal" data-target="#addNewEmployee">Add New</button>
                 </div>
-                <button class="btn btn-success col-sm-1"data-toggle="modal" data-target="#addNewEmployee">Add New</button>
                 <!-- Modal -->
                 <div class="modal fade" id="addNewEmployee" tabindex="-1" role="dialog" aria-labelledby="addNewEmployeeLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -96,7 +99,7 @@ $employees = getAllEmployees();
                             </div>
                             <div class="modal-body">
                                 <form action="#" method="post">
-<!--                          username, pass, first,last, role, email-->
+                                    <!--                          username, pass, first,last, role, email-->
                                     <div class="form-group row">
                                         <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                                         <div class="col-sm-10">

@@ -18,8 +18,14 @@
                     <a class="nav-link" href="admin_fleet.php">Fleet</a>
                     <a class="nav-link" href="admin_routes.php">Routes</a>
                     <a class="nav-link" href="admin_schedule.php">Schedule</a>
+                    <a class="nav-link fixed-bottom" href="../index.php?type=logout">Logout</a>
                 </li>
             </ul>
+<!--            <div class="fixed-bottom">-->
+<!--                <button type="button" class="btn btn-dark btn-block">-->
+<!--                    Logout-->
+<!--                </button>-->
+<!--            </div>-->
         </nav>
 </div>
 <!-- This code will highlight the current page -->

@@ -15,7 +15,6 @@ if(isset($_POST['type'])) {
     if ($user != false) {
         session_start();
         $_SESSION['user'] = $user;
-        var_dump($user);
         switch ($user['role']) {
             case 'admin':
                 header("Location: admin/admin_home.php");
@@ -29,7 +28,6 @@ if(isset($_POST['type'])) {
             default:
                 header("Location: customer/customer_home.php");
                 break;
-
         }
     }
     else {
