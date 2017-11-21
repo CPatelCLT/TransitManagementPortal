@@ -30,6 +30,8 @@ $routeSeq = getRouteSequence($route['routeID']);
 <div class="row">
     <?php include("driver_sidebar.php"); ?>
     <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <h1 style="margin-left:15px;margin-right:15px;">Route</h1>
+
         <div class="row card-group" style="padding-right: 15px; padding-left: 15px;">
             <div class="card border-dark col-6" style="margin-left: 10px;">
                 <div class="card-body align-items-center" style="flex: 0;">
