@@ -30,10 +30,19 @@ function getSchedulesByEmployee($employeeID) {
 
 function getCurrentEmpSchedule($employeeID) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM schedule where employeeID = :employeeID');
+    $stmt = $db->prepare('SELECT * FROM schedule where employeeID = :employeeID order by scheduleID desc');
     $stmt->bindParam(':employeeID', $employeeID);
     $stmt->execute();
     $schedule = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $schedule;
+}
+function getNextEmpSchedule($employeeID) {
+    global $db;
+    $stmt = $db->prepare('SELECT * FROM schedule where employeeID = :employeeID order by scheduleID desc');
+    $stmt->bindParam(':employeeID', $employeeID);
+    $stmt->execute();
+    $schedule = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $schedule[1];
 }

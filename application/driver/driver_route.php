@@ -1,4 +1,8 @@
 <?php
+include ("../data/route.php");
+include ("../data/schedule.php");
+
+
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -7,10 +11,14 @@ if (isset($_SESSION['user'])) {
     //header("Location: ../index.php");
 }
 
-include ("../data/route.php");
-include ("../data/schedule.php");
-$route = getRouteByID(getCurrentEmpSchedule($user['employeeID'])['routeID']);
-$routeSeq = getRouteSequence($route['routeID']);
+if(isset($_GET['route'])) {
+    $route = getRouteByID($_GET['route']);
+    $routeSeq = getRouteSequence($_GET['route']);
+} else {
+    $route = getRouteByID(getCurrentEmpSchedule($user['employeeID'])['routeID']);
+    $routeSeq = getRouteSequence($route['routeID']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +39,6 @@ $routeSeq = getRouteSequence($route['routeID']);
     <?php include("driver_sidebar.php"); ?>
     <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
         <h1 style="margin-left:15px;margin-right:15px;">Route</h1>
-
         <div class="row card-group" style="padding-right: 15px; padding-left: 15px;">
             <div class="card border-dark col-6" style="margin-left: 10px;">
                 <div class="card-body align-items-center" style="flex: 0;">
@@ -39,6 +46,7 @@ $routeSeq = getRouteSequence($route['routeID']);
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Distance:<span class="float-right"><?php echo $route['distance']." Miles"?></span></li>
+                    <!-- TODO Store the days of week in database -->
                     <li class="list-group-item">Days of Week:<span class="float-right">All Weekdays</span></li>
                     <li class="list-group-item">Start Time:<span class="float-right"><?php echo $route['start']?></span></li>
                     <li class="list-group-item">End Time:<span class="float-right"><?php echo $route['stop']?></span></li>
@@ -77,7 +85,7 @@ $routeSeq = getRouteSequence($route['routeID']);
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

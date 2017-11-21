@@ -61,4 +61,5 @@ if(isset($_POST['type'])) {
     </div>
 </div>
 </body>
+<script src="../js/bootstrap.bundle.min.js"></script>
 </html>

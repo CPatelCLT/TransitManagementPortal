@@ -1,4 +1,6 @@
 <?php
+include ("../data/fleet.php");
+include ("../data/schedule.php");
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -6,6 +8,13 @@ if (isset($_SESSION['user'])) {
 } else {
     //header("Location: ../index.php");
 }
+
+if(isset($_GET['bus'])) {
+    $bus = getBusByID($_GET['bus']);
+} else {
+    $bus = getBusByID(getCurrentEmpSchedule($user['employeeID'])['busID']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -25,23 +34,22 @@ if (isset($_SESSION['user'])) {
 <div class="row">
     <?php include("driver_sidebar.php"); ?>
     <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-        <h1 style="margin-left:15px;margin-right:15px;">Profile</h1>
+        <h1 style="margin-left:15px;margin-right:15px;">Bus</h1>
         <div class="row card-group" style="padding-right: 15px; padding-left: 15px;">
             <div class="card border-dark col-8" style="margin-left: 10px;">
                 <div class="card-body align-items-center">
-                    <!-- TODO Add the modal to edit the profile -->
-                    <button class="btn btn-info float-right">Edit Profile</button>
-                    <h2 class="card-title"><?php echo $user['firstname']." ".$user['lastname'] ?></h2>
+                    <!-- TODO Add the modal to request maintenance -->
+                    <button class="btn btn-info float-right">Request<br/>Maintenance</button>
+                    <h2 class="card-title"><?php echo "Bus ".$bus['busID']?></h2>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">User Name:<span class="float-right"><?php echo $user['username']?></span></li>
-                    <li class="list-group-item">Password:<span class="float-right"><?php echo $user['password']?></span></li>
-                    <li class="list-group-item">Email:<span class="float-right"><?php echo $user['email']?></span></li>
+                    <li class="list-group-item">Mileage:<span class="float-right"><?php echo $bus['mileage']?></span></li>
+                    <li class="list-group-item">Miles to service:<span class="float-right"><?php echo $bus['checkinterval']?></span></li>
                 </ul>
             </div>
             <div class="card border-dark col-4" style="margin-right: 15px;">
                 <div class="card-body">
-                    <img class="card-img" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src=<?php echo '../img/emp' .sprintf('%03d', $user['employeeID']) .'.jpg'?>>
+                    <img class="card-img" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src=<?php echo '../img/bus' .sprintf('%03d', $bus['busID']) .'.jpg'?>>
                 </div>
             </div>
         </div>

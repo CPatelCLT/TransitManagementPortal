@@ -16,7 +16,7 @@
                 <a class="nav-link" href="driver_home.php">Home</a>
                 <a class="nav-link" href="driver_profile.php">Profile</a>
                 <a class="nav-link" href="driver_bus.php">Bus</a>
-                <a class="nav-link" href="driver_routes.php">Route</a>
+                <a class="nav-link" href="driver_route.php">Route</a>
                 <a class="nav-link" href="driver_schedule.php">Schedule</a>
             </li>
         </ul>
