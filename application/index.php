@@ -44,11 +44,13 @@ if(isset($_POST['type'])) {
     <link rel="stylesheet" type="text/css" href="css/signin.css">
     <title>Login</title>
 </head>
-<body background="img/loginBackground.jpg">
-<div class="jumbotron  d-flex align-items-center">
+<body style="background-image: url('img/loginBackground.jpg'); background-size: 100% auto;">
+<div class="jumbotron  d-flex align-items-center" style="background:transparent;">
     <div class="container">
-        <form class="form-signin" method="post" action="#">
-            <h2 class="form-signin-heading">Please Sign In</h2>
+        <form class="form-signin bg-light" method="post" action="#">
+            <h1 class="text-center">Transit Portal</h1>
+            <hr/>
+            <h3 class="form-signin-heading text-center">Please Sign In</h3>
             <label for="inputUsername" class="sr-only">Email Address</label>
             <input id="inputUsername" class="form-control" placeholder="Username" required autofocus name="username">
             <label for="inputPassword" class="sr-only">Password</label>
