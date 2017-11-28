@@ -1,4 +1,12 @@
 <?php
+session_start();
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    echo $user['employeeID'];
+} else {
+    //header("Location: ../index.php");
+}
+
 
 require_once('../data/fleet.php');
 

@@ -67,10 +67,10 @@ function updateEmployee($id, $username, $password, $email, $role, $firstname, $l
     $stmt->bindParam(':employeeID', $id);
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password', $password);
-    $stmt->bindParam(':firstname', $email);
-    $stmt->bindParam(':lastname', $role);
-    $stmt->bindParam(':role', $firstname);
-    $stmt->bindParam(':email', $lastname);
+    $stmt->bindParam(':firstname', $firstname);
+    $stmt->bindParam(':lastname', $lastname);
+    $stmt->bindParam(':role', $role);
+    $stmt->bindParam(':email', $email);
     $stmt->execute();
     $stmt->closeCursor();
     return $stmt->rowCount();
@@ -80,10 +80,10 @@ function insertEmployee($username, $password, $email, $role, $firstname, $lastna
     $stmt = $db->prepare("INSERT INTO employees (username, password, firstname, lastname, role, email) VALUES (:username, :password, :firstname, :lastname, :role, :email)");
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password', $password);
-    $stmt->bindParam(':firstname', $email);
-    $stmt->bindParam(':lastname', $role);
-    $stmt->bindParam(':role', $firstname);
-    $stmt->bindParam(':email', $lastname);
+    $stmt->bindParam(':firstname', $firstname);
+    $stmt->bindParam(':lastname', $lastname);
+    $stmt->bindParam(':role', $role);
+    $stmt->bindParam(':email', $email);
     $stmt->execute();
     $stmt->closeCursor();
     return $db->lastInsertID();
@@ -95,4 +95,9 @@ function deleteEmployee($id){
     $stmt->execute();
     $stmt->closeCursor();
     return $stmt->rowCount();
+}
+
+function promoteEmployee($employeeID, $prevRole, $newRole) {
+    // TODO Promote method will remove references in tables that rely on the employee being a certain role
+    // Example: A driver being promoted to an administrator cannot have entries in the schedule table
 }

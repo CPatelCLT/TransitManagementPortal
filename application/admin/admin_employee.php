@@ -1,6 +1,29 @@
 <?php
-
 require_once('../data/employee.php');
+
+session_start();
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    echo $user['employeeID'];
+} else {
+    //header("Location: ../index.php");
+}
+
+if(isset($_POST['action'])) {
+    $action = $_POST['action'];
+    switch($action) {
+        case "add":
+            if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['role']) && isset($_POST['firstName']) && isset($_POST['lastName'])) {
+                $status = insertEmployee($_POST['username'],$_POST['password'],$_POST['email'],$_POST['role'],$_POST['firstName'],$_POST['lastName']);
+            } else {
+                // TODO Add alert for invalid entry
+            }
+            break;
+    }
+}
+
+
+
 
 $employees = getAllEmployees();
 
@@ -32,11 +55,11 @@ $employees = getAllEmployees();
         @include media-breakpoint-only(sm) {
             column-count: 2;
         }
-        column-count:4;
+        /*column-count:4;*/
         }
-        .card {
-            height = 100px;
-        }
+        /*.card {*/
+        /*height : 250px;*/
+        /*}*/
     </style>
     <title>Dashboard</title>
 </head>
@@ -49,78 +72,93 @@ $employees = getAllEmployees();
     <div class="row">
         <?php include("admin_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <div class="row" style="padding-right: 15px">
-                <h2 class="col-9">Employees</h2>
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <button type="button" class="btn btn-secondary">1</button>
-                    <button type="button" class="btn btn-secondary">2</button>
-
+            <div class="row justify-content-between" style="padding-right: 15px">
+                <h2 class="col-5">Employees</h2>
+                <div class="btn-group col-2" role="group" aria-label="Button group with nested dropdown" style="margin-right: 30px">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown link
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter Roles
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#">All</a>
+                            <a class="dropdown-item" href="#">Admins</a>
+                            <a class="dropdown-item" href="#">Drivers</a>
+                            <a class="dropdown-item" href="#">Mechanics</a>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addEmployee">Add New</button>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="addNewEmployee" tabindex="-1" role="dialog" aria-labelledby="addNewEmployeeLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                <div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="addNewEmployeeLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add New Emploee</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="#" method="post">
+                            <form action="#" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add New Emploee</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
                                     <!--                          username, pass, first,last, role, email-->
+                                    <div class="form-group row">
+                                        <label for="inputFirst" class="col-sm-2 col-form-label">First Name</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="inputFirst" placeholder="First Name" name="firstName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputLast" class="col-sm-2 col-form-label">Last Name</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="inputLast" placeholder="Last Name" name="lastName">
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row">
                                         <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="inputUsername" placeholder="Username">
+                                            <input class="form-control" id="inputUsername" placeholder="Username" name="username">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputEmail" placeholder="Email">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
                                         </div>
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="admin">Admin
-                                        </label>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Role</label>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="admin">Admin
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="driver">Driver
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="role" id="inlineRadio3" value="mechanic">Mechanic
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="driver">Driver
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="role" id="inlineRadio3" value="mechanic">Mechanic
-                                        </label>
-                                    </div>
-
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button name="action" value="add" type="submit" class="btn btn-primary">Add Employee</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -129,13 +167,13 @@ $employees = getAllEmployees();
             <div class="card-columns">
                 <?php
                 foreach ($employees as $employee) {
-                    echo '<div class="card">
+                    echo '<a href=?employee="'.$employee['employeeID'].'"><div class="card">
                     <img class="card-img-top rounded" src="../img/emp' . sprintf('%03d', $employee['employeeID']) . '.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">' . $employee['firstname'] . ' ' . $employee['lastname'] . '</h4>
                         <p class="card-text">' . $employee['role'] . '</p>
                     </div>
-                </div>';
+                </div></a>';
                 }
                 ?>
             </div>
