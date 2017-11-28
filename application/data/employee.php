@@ -62,6 +62,7 @@ function doEmployeeLogin($username, $password) {
     }
 }
 function updateEmployee($id, $username, $password, $email, $role, $firstname, $lastname) {
+    // TODO Check for role difference, call promoteEmployee() after update if there is a difference
     global $db;
     $stmt = $db->prepare("UPDATE employees SET username=:username, password=:password, firstname=:firstname, lastname=:lastname, role=:role, email=:email WHERE employeeID=:employeeID");
     $stmt->bindParam(':employeeID', $id);
