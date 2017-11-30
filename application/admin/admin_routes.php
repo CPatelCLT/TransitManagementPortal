@@ -50,7 +50,7 @@ $routes = getAllRoutes();
         <?php include("admin_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <div class="row" style="padding-right: 15px">
-                <h2 class="col-9">Employees</h2>
+                <h2 class="col-9">Routes</h2>
                 <div class="btn-group col-2">
                     <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
