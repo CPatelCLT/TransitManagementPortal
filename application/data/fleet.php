@@ -46,3 +46,11 @@ function getLastBus(){
     $stmt->closeCursor();
     return $bus['last']+1;
 }
+function getNextBus(){
+    global $db;
+    $stmt = $db->prepare('SHOW TABLE STATUS LIKE "fleet"');
+    $stmt->execute();
+    $bus = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $bus['Auto_increment'];
+}
