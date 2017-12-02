@@ -3,6 +3,12 @@
 require_once('../data/route.php');
 require_once('../data/customer.php');
 
+session_start();
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    $cusFavorite = getCustomerFavorites($user['userID']);
+    var_dump($cusFavorite);
+}
 ?>
 
 
