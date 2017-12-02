@@ -3,6 +3,7 @@
 require_once('../data/route.php');
 require_once('../data/customer.php');
 
+$favorites = getCustomerFavorites($user['userID']);
 ?>
 
 
@@ -66,13 +67,14 @@ require_once('../data/customer.php');
             <hr/>
             <div class="card-columns">
                 <!-- TODO Change color of card text back to normal text instead of link -->
+                <!-- TODO Add pill for if route is active right now or not -->
                 <?php
-                foreach ($employees as $employee) {
-                    echo '<a href=?employee=' . $employee['employeeID'] . '><div class="card">
-                    <img class="card-img-top rounded" src="../img/emp' . sprintf('%03d', $employee['employeeID']) . '.jpg" alt="Card image cap">
+                foreach ($favorites as $favorite) {
+                    echo '<a href=?route=' . $favorite['routeID'] . '><div class="card">
+                    <img class="card-img-top rounded" src="../img/rte' . sprintf('%03d', $favorite['routeID']) . '.jpg" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">' . $employee['firstname'] . ' ' . $employee['lastname'] . '</h4>
-                        <p class="card-text">' . $employee['role'] . '</p>
+                        <h4 class="card-title">Route  ' . $favorite['routeID'] . '</h4>
+                        <p class="card-text">Days of week: M,W,F</p>
                     </div>
                 </div></a>';
                 }
