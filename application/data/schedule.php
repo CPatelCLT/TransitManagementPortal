@@ -11,7 +11,7 @@ require_once('database.php');
 function getAllSchedule()
 {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM schedule');
+    $stmt = $db->prepare('SELECT * FROM Schedule');
     $stmt->execute();
     $schedule = $stmt->fetchAll();
     $stmt->closeCursor();
@@ -20,7 +20,7 @@ function getAllSchedule()
 
 function getSchedulesByEmployee($employeeID) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM schedule where employeeID = :employeeID');
+    $stmt = $db->prepare('SELECT * FROM Schedule where employeeID = :employeeID');
     $stmt->bindParam(':employeeID', $employeeID);
     $stmt->execute();
     $schedules = $stmt->fetchAll();
@@ -30,7 +30,7 @@ function getSchedulesByEmployee($employeeID) {
 
 function getCurrentEmpSchedule($employeeID) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM schedule where employeeID = :employeeID order by scheduleID desc');
+    $stmt = $db->prepare('SELECT * FROM Schedule where employeeID = :employeeID order by scheduleID desc');
     $stmt->bindParam(':employeeID', $employeeID);
     $stmt->execute();
     $schedule = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -39,7 +39,7 @@ function getCurrentEmpSchedule($employeeID) {
 }
 function getNextEmpSchedule($employeeID) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM schedule where employeeID = :employeeID order by scheduleID desc');
+    $stmt = $db->prepare('SELECT * FROM Schedule where employeeID = :employeeID order by scheduleID desc');
     $stmt->bindParam(':employeeID', $employeeID);
     $stmt->execute();
     $schedule = $stmt->fetchAll();

@@ -11,7 +11,7 @@ require_once('database.php');
 function getAllBuses()
 {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM fleet');
+    $stmt = $db->prepare('SELECT * FROM Fleet');
     $stmt->execute();
     $buses = $stmt->fetchAll();
     $stmt->closeCursor();
@@ -20,7 +20,7 @@ function getAllBuses()
 
 function getBusesByActive($active) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM fleet where active = :active');
+    $stmt = $db->prepare('SELECT * FROM Fleet where active = :active');
     $stmt->bindParam(':active', $active);
     $stmt->execute();
     $buses = $stmt->fetchAll();
@@ -30,7 +30,7 @@ function getBusesByActive($active) {
 
 function getBusByID($busID) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM fleet where busID = :busID');
+    $stmt = $db->prepare('SELECT * FROM Fleet where busID = :busID');
     $stmt->bindParam(':busID', $busID);
     $stmt->execute();
     $bus = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@ function getBusByID($busID) {
 
 function getNextBus(){
     global $db;
-    $stmt = $db->prepare('SHOW TABLE STATUS LIKE "fleet"');
+    $stmt = $db->prepare('SHOW TABLE STATUS LIKE "Fleet"');
     $stmt->execute();
     $bus = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
@@ -49,7 +49,7 @@ function getNextBus(){
 
 function updateBus($busID, $mileage) {
     global $db;
-    $stmt = $db->prepare("UPDATE fleet SET mileage=:mileage WHERE busID=:busID");
+    $stmt = $db->prepare("UPDATE Fleet SET mileage=:mileage WHERE busID=:busID");
     $stmt->bindParam(':busID', $busID);
     $stmt->bindParam(':mileage', $mileage);
     $stmt->execute();
@@ -58,7 +58,7 @@ function updateBus($busID, $mileage) {
 }
 function insertBus($mileage) {
     global $db;
-    $stmt = $db->prepare("INSERT INTO fleet (active, mileage) VALUES ('1', :mileage)");
+    $stmt = $db->prepare("INSERT INTO Fleet (active, mileage) VALUES ('1', :mileage)");
     $stmt->bindParam(':mileage', $mileage);
     $stmt->execute();
     $stmt->closeCursor();
@@ -66,7 +66,7 @@ function insertBus($mileage) {
 }
 function deleteBus($busID){
     global $db;
-    $stmt = $db->prepare('DELETE FROM fleet where busID = :busID');
+    $stmt = $db->prepare('DELETE FROM Fleet where busID = :busID');
     $stmt->bindParam(':busID', $busID);
     $stmt->execute();
     $stmt->closeCursor();

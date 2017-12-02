@@ -11,7 +11,7 @@ require_once('database.php');
 function getAllRoutes()
 {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM routes');
+    $stmt = $db->prepare('SELECT * FROM Routes');
     $stmt->execute();
     $routes = $stmt->fetchAll();
     $stmt->closeCursor();
@@ -20,7 +20,7 @@ function getAllRoutes()
 
 function getRouteByID($routeID) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM routes where routeID = :routeID');
+    $stmt = $db->prepare('SELECT * FROM Routes where routeID = :routeID');
     $stmt->bindParam(':routeID', $routeID);
     $stmt->execute();
     $route = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -30,7 +30,7 @@ function getRouteByID($routeID) {
 
 function getRouteSequence($routeID) {
     global $db;
-    $stmt = $db->prepare('select routesequence.*, stops.* from routesequence inner join stops on routesequence.stopID = stops.stopID where routeID = :routeID;');
+    $stmt = $db->prepare('select RouteSequence.*, Stops.* from RouteSequence inner join Stops on RouteSequence.stopID = Stops.stopID where routeID = :routeID;');
     $stmt->bindParam(':routeID', $routeID);
     $stmt->execute();
     $routeSequence = $stmt->fetchAll();

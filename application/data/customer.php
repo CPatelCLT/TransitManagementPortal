@@ -11,7 +11,7 @@ require_once('database.php');
 function getAllCustomers()
 {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM customers');
+    $stmt = $db->prepare('SELECT * FROM Customers');
     $stmt->execute();
     $customers = $stmt->fetchAll();
     $stmt->closeCursor();
@@ -20,7 +20,7 @@ function getAllCustomers()
 
 function getCustomerByID($custID) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM customers where userID = :ID');
+    $stmt = $db->prepare('SELECT * FROM Customers where userID = :ID');
     $stmt->bindParam(':ID', $custID);
     $stmt->execute();
     $customer = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -30,7 +30,7 @@ function getCustomerByID($custID) {
 
 function getCustomerByUsername($username) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM customers where username = :username');
+    $stmt = $db->prepare('SELECT * FROM Customers where username = :username');
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $customer = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@ function getCustomerByUsername($username) {
 
 function doCustomerLogin($username, $password) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM customers where username = :username');
+    $stmt = $db->prepare('SELECT * FROM Customers where username = :username');
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $customer = $stmt->fetch(PDO::FETCH_ASSOC);

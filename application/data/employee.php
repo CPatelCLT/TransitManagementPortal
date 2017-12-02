@@ -11,7 +11,7 @@ require_once('database.php');
 function getAllEmployees()
 {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM employees');
+    $stmt = $db->prepare('SELECT * FROM Employees');
     $stmt->execute();
     $employees = $stmt->fetchAll();
     $stmt->closeCursor();
@@ -20,7 +20,7 @@ function getAllEmployees()
 
 function getEmployeesByRole($role) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM employees where role = :role');
+    $stmt = $db->prepare('SELECT * FROM Employees where role = :role');
     $stmt->bindParam(':role', $role);
     $stmt->execute();
     $employees = $stmt->fetchAll();
@@ -30,7 +30,7 @@ function getEmployeesByRole($role) {
 
 function getEmployeeByID($empID) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM employees where employeeID = :empID');
+    $stmt = $db->prepare('SELECT * FROM Employees where employeeID = :empID');
     $stmt->bindParam(':empID', $empID);
     $stmt->execute();
     $employee = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@ function getEmployeeByID($empID) {
 
 function getEmployeeByUsername($username) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM employees where username = :username');
+    $stmt = $db->prepare('SELECT * FROM Employees where username = :username');
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $employee = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -50,7 +50,7 @@ function getEmployeeByUsername($username) {
 
 function doEmployeeLogin($username, $password) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM employees where username = :username');
+    $stmt = $db->prepare('SELECT * FROM Employees where username = :username');
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $employee = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -64,7 +64,7 @@ function doEmployeeLogin($username, $password) {
 function updateEmployee($id, $username, $password, $email, $role, $firstname, $lastname) {
     // TODO Check for role difference, call promoteEmployee() after update if there is a difference
     global $db;
-    $stmt = $db->prepare("UPDATE employees SET username=:username, password=:password, firstname=:firstname, lastname=:lastname, role=:role, email=:email WHERE employeeID=:employeeID");
+    $stmt = $db->prepare("UPDATE Employees SET username=:username, password=:password, firstname=:firstname, lastname=:lastname, role=:role, email=:email WHERE employeeID=:employeeID");
     $stmt->bindParam(':employeeID', $id);
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password', $password);
@@ -78,7 +78,7 @@ function updateEmployee($id, $username, $password, $email, $role, $firstname, $l
 }
 function insertEmployee($username, $password, $email, $role, $firstname, $lastname) {
     global $db;
-    $stmt = $db->prepare("INSERT INTO employees (username, password, firstname, lastname, role, email) VALUES (:username, :password, :firstname, :lastname, :role, :email)");
+    $stmt = $db->prepare("INSERT INTO Employees (username, password, firstname, lastname, role, email) VALUES (:username, :password, :firstname, :lastname, :role, :email)");
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password', $password);
     $stmt->bindParam(':firstname', $firstname);
@@ -91,7 +91,7 @@ function insertEmployee($username, $password, $email, $role, $firstname, $lastna
 }
 function deleteEmployee($id){
     global $db;
-    $stmt = $db->prepare('DELETE FROM employees where employeeID = :employeeID');
+    $stmt = $db->prepare('DELETE FROM Employees where employeeID = :employeeID');
     $stmt->bindParam(':employeeID', $id);
     $stmt->execute();
     $stmt->closeCursor();
