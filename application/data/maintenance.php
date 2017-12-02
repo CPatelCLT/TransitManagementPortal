@@ -47,7 +47,7 @@ function updateJob($maintID, $value, $type) {
 }
 function addJob($busID, $desc) {
     global $db;
-    $stmt = $db->prepare("INSERT INTO Maintenance (busID, maintItem) VALUES (:busID, :desc)");
+    $stmt = $db->prepare("INSERT INTO Maintenance (busID, maintItem,complete) VALUES (:busID, :desc ,0)");
     $stmt->bindParam(':busID', $busID);
     $stmt->bindParam(':desc', $desc);
     $stmt->execute();
