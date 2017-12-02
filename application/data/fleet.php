@@ -38,14 +38,6 @@ function getBusByID($busID) {
     return $bus;
 }
 
-function getLastBus(){
-    global $db;
-    $stmt = $db->prepare('SELECT max(busID) as last FROM fleet');
-    $stmt->execute();
-    $bus = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt->closeCursor();
-    return $bus['last']+1;
-}
 function getNextBus(){
     global $db;
     $stmt = $db->prepare('SHOW TABLE STATUS LIKE "fleet"');
@@ -55,38 +47,27 @@ function getNextBus(){
     return $bus['Auto_increment'];
 }
 
-
-function updateEmployee($id, $username, $password, $email, $role, $firstname, $lastname) {
+function updateBus($busID, $mileage) {
     global $db;
-    $stmt = $db->prepare("UPDATE employees SET username=:username, password=:password, firstname=:firstname, lastname=:lastname, role=:role, email=:email WHERE employeeID=:employeeID");
-    $stmt->bindParam(':employeeID', $id);
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':password', $password);
-    $stmt->bindParam(':firstname', $firstname);
-    $stmt->bindParam(':lastname', $lastname);
-    $stmt->bindParam(':role', $role);
-    $stmt->bindParam(':email', $email);
+    $stmt = $db->prepare("UPDATE fleet SET mileage=:mileage WHERE busID=:busID");
+    $stmt->bindParam(':busID', $busID);
+    $stmt->bindParam(':mileage', $mileage);
     $stmt->execute();
     $stmt->closeCursor();
     return $stmt->rowCount();
 }
-function insertEmployee($username, $password, $email, $role, $firstname, $lastname) {
+function insertBus($mileage) {
     global $db;
-    $stmt = $db->prepare("INSERT INTO employees (username, password, firstname, lastname, role, email) VALUES (:username, :password, :firstname, :lastname, :role, :email)");
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':password', $password);
-    $stmt->bindParam(':firstname', $firstname);
-    $stmt->bindParam(':lastname', $lastname);
-    $stmt->bindParam(':role', $role);
-    $stmt->bindParam(':email', $email);
+    $stmt = $db->prepare("INSERT INTO fleet (active, mileage) VALUES ('1', :mileage)");
+    $stmt->bindParam(':mileage', $mileage);
     $stmt->execute();
     $stmt->closeCursor();
     return $db->lastInsertID();
 }
-function deleteEmployee($id){
+function deleteBus($busID){
     global $db;
-    $stmt = $db->prepare('DELETE FROM employees where employeeID = :employeeID');
-    $stmt->bindParam(':employeeID', $id);
+    $stmt = $db->prepare('DELETE FROM fleet where busID = :busID');
+    $stmt->bindParam(':busID', $busID);
     $stmt->execute();
     $stmt->closeCursor();
     return $stmt->rowCount();

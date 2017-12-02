@@ -34,8 +34,8 @@ if (isset($_POST['action'])) {
     $action = $_POST['action'];
     switch ($action) {
         case "add":
-            if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['role']) && isset($_POST['firstName']) && isset($_POST['lastName'])) {
-                $status = insertEmployee($_POST['username'], $_POST['password'], $_POST['email'], $_POST['role'], $_POST['firstName'], $_POST['lastName']);
+            if (isset($_POST['mileage'])) {
+                $status = insertBus($_POST['mileage']);
                 //TODO Add status alert/toast
             } else {
                 // TODO Add alert for invalid entry
@@ -47,8 +47,8 @@ if (isset($_POST['action'])) {
             header("Refresh:0");
             break;
         case "update":
-            if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['role']) && isset($_POST['firstName']) && isset($_POST['lastName'])) {
-                $status = updateEmployee($_POST['employeeID'], $_POST['username'], $_POST['password'], $_POST['email'], $_POST['role'], $_POST['firstName'], $_POST['lastName']);
+            if (isset($_POST['mileage']) && isset($_POST['busID'])) {
+                $status = updateBus($_POST['busID'], $_POST['mileage']);
                 //TODO Add status alert/toast
                 header("Refresh:0");
             } else {
@@ -108,7 +108,6 @@ function showBus($busID)
     $("#showBus").modal("show")
 </script>';
 }
-
 ?>
 
 
@@ -122,6 +121,11 @@ function showBus($busID)
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="../js/bootstrap.js"></script>
 
+    <script>
+        if(typeof window.history.pushState == 'function') {
+            window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
+        }
+    </script>
 
     <!-- TODO Make column change work... -->
     <style>
