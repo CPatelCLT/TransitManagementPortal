@@ -1,7 +1,9 @@
 <?php
-
-
-
+session_start();
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    echo $user['userID'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,10 +18,10 @@
 </head>
 <body>
 
-<?php include("cust_header.php"); ?>
+<?php include("customer_header.php"); ?>
 
 <div class="row">
-    <?php include("cust_sidebar.php"); ?>
+    <?php include("customer_sidebar.php"); ?>
     <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
         <h1 style="margin-left:15px;margin-right:15px;">Profile</h1>
         <div class="row card-group" style="padding-right: 15px; padding-left: 15px;">
@@ -37,7 +39,7 @@
             </div>
             <div class="card border-dark col-4" style="margin-right: 15px;">
                 <div class="card-body">
-                    <img class="card-img" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src=<?php echo '../img/emp' .sprintf('%03d', $user['employeeID']) .'.jpg'?>>
+                    <img class="card-img" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src=<?php echo '../img/cus' .sprintf('%03d', $user['userID']) .'.jpg'?>>
                 </div>
             </div>
         </div>
