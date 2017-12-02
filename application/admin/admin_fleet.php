@@ -8,6 +8,10 @@ if (isset($_SESSION['user'])) {
     //header("Location: ../index.php");
 }
 
+if (isset($_GET['bus'])) {
+    showBus($_GET['bus']);
+}
+
 if (isset($_GET['filter'])) {
     switch ($_GET['filter']) {
         case "all":
@@ -26,7 +30,84 @@ if (isset($_GET['filter'])) {
     $buses = getAllBuses();
 }
 
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+    switch ($action) {
+        case "add":
+            if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['role']) && isset($_POST['firstName']) && isset($_POST['lastName'])) {
+                $status = insertEmployee($_POST['username'], $_POST['password'], $_POST['email'], $_POST['role'], $_POST['firstName'], $_POST['lastName']);
+                //TODO Add status alert/toast
+            } else {
+                // TODO Add alert for invalid entry
+            }
+            break;
+        case "delete":
+            $status = deleteBus($_POST['busID']);
+            //TODO Add status alert/toast
+            header("Refresh:0");
+            break;
+        case "update":
+            if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['role']) && isset($_POST['firstName']) && isset($_POST['lastName'])) {
+                $status = updateEmployee($_POST['employeeID'], $_POST['username'], $_POST['password'], $_POST['email'], $_POST['role'], $_POST['firstName'], $_POST['lastName']);
+                //TODO Add status alert/toast
+                header("Refresh:0");
+            } else {
+                // TODO Add alert for invalid entry
+            }
+            break;
+    }
+}
+
 $nextBus=getNextBus();
+
+function showBus($busID)
+{
+    $bus = getBusByID($busID);
+    echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="showBus">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="#" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Emploee</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="inputBusNo" class="col-sm-2 col-form-label">Bus Number</label>
+                        <div class="col-sm-10">
+                            '.$bus['busID'].'
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMileage" class="col-sm-2 col-form-label">Mileage</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="inputMileage" placeholder="mileage"
+                                   name="mileage" value="'.$bus['mileage'].'">
+                        </div>
+                    </div>';
+    echo '</div>
+<div class="modal-footer">
+    <input type="hidden" name="busID" value="' . $bus['busID'] . '">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button name="action" value="update" type="submit" class="btn btn-primary">Update Bus</button>
+    <button name="action" value="delete" type="submit" class="btn btn-primary">Delete Bus</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script>
+    $("#showBus").modal("show")
+</script>';
+}
 
 ?>
 
@@ -110,50 +191,24 @@ $nextBus=getNextBus();
                                     </button>
                                 </div>
                                 <div class="modal-body">
-
-                                    <!-- username, pass, first,last, role, email-->
                                     <div class="form-group row">
-                                        <label for="inputFirst" class="col-sm-2 col-form-label">First Name</label>
+                                        <label for="inputBusNo" class="col-sm-2 col-form-label">Bus Number</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="inputFirst" placeholder="First Name"
-                                                   name="firstName" value="<?php echo $nextBus;?>">
+                                            <?php echo $nextBus;?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputLast" class="col-sm-2 col-form-label">Last Name</label>
+                                        <label for="inputMileage" class="col-sm-2 col-form-label">Mileage</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="inputLast" placeholder="Last Name"
-                                                   name="lastName">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" id="inputUsername" placeholder="Username"
-                                                   name="username">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword"
-                                                   placeholder="Password" name="password">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email"
-                                                   name="email">
+                                            <input class="form-control" id="inputMileage" placeholder="mileage"
+                                                   name="mileage">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button name="action" value="add" type="submit" class="btn btn-primary">Add
-                                        Employee
+                                        Bus
                                     </button>
                                 </div>
                             </form>
@@ -166,7 +221,7 @@ $nextBus=getNextBus();
 
                 <?php
                 foreach ($buses as $bus) {
-                    echo '<div class="card">';
+                    echo '<a href="?bus='.$bus['busID'].'"><div class="card">';
                     echo '<img class="card-img-top rounded" src="../img/bus' . sprintf('%03d', $bus['busID']) . '.jpg" alt="Card image cap">
                     <div class="card-body">';
                     if ($bus['active'] == "1"){
@@ -174,10 +229,10 @@ $nextBus=getNextBus();
                     } else {
                         echo '<span class="badge badge-pill badge-danger float-right" style="font-size: 1.5em;">Inactive</span>';
                     }
-                        echo '<h4 class="card-title">Bus ' .$bus['busID'].'</h4>
+                    echo '<h4 class="card-title">Bus ' .$bus['busID'].'</h4>
                         <p class="card-text">' . $bus['mileage'] . ' miles</p>
                     </div>
-                </div>';
+                </div></a>';
                 }
                 ?>
             </div>

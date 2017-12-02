@@ -12,16 +12,15 @@
 
 <?php include("admin_header.php"); ?>
 
-
 <div class="container-fluid">
     <div class="row">
         <?php include("admin_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <h1>Welcome to the Transit Manager Homepage</h1>
+            <h1>Welcome to the manager/admin homepage</h1>
 
             <figure style="width:50%;display:block; margin: auto">
                 <img width="100%" src="https://www.fluencecorp.com/wp-content/uploads/2017/07/henry-j-charrabe.png" alt="">
-                <figcaption Style="text-align: center; font-size:35px">This is Jim</figcaption>
+                <figcaption Style="text-align: center; font-size:35px">This is Jim<br/>He's the boss!</figcaption>
             </figure>
         </main>
     </div>

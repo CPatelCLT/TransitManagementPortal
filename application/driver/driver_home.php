@@ -12,7 +12,6 @@
 
 <?php include("driver_header.php"); ?>
 
-
     <div class="row">
         <?php include("driver_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
