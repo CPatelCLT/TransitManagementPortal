@@ -14,10 +14,10 @@
 </head>
 <body>
 
-<?php include("cust_header.php"); ?>
+<?php include("customer_header.php"); ?>
 
 <div class="row">
-    <?php include("cust_sidebar.php"); ?>
+    <?php include("customer_sidebar.php"); ?>
     <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
         <h1 style="margin-left:15px;margin-right:15px;">Favorite Routes</h1>
         <div class="row card-group" style="padding-right: 15px; padding-left: 15px;">

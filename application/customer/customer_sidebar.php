@@ -10,9 +10,9 @@
     <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar border border-secondary" >
         <ul class="nav nav-pills flex-column ">
             <li class="nav-item ">
-                <a class="nav-link" href="cust_home.php">Home</a>
-                <a class="nav-link" href="cust_favorites.php">Favorites</a>
-                <a class="nav-link" href="cust_account.php">Account</a>
+                <a class="nav-link" href="customer_home.php">Home</a>
+                <a class="nav-link" href="customer_favorites.php">Favorites</a>
+                <a class="nav-link" href="customer_account.php">Account</a>
             </li>
         </ul>
     </nav>
