@@ -51,6 +51,16 @@ function doCustomerLogin($username, $password) {
         return $customer;
     }
 }
+
+function getCustomerFavorites($userID) {
+    global $db;
+    $stmt = $db->prepare('select Routes.* from CustomerFavorites inner join Routes on CustomerFavorites.routeID = Routes.routeID where userID = :userID;');
+    $stmt->bindParam(':userID', $userID);
+    $stmt->execute();
+    $custFavs = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $custFavs;
+}
 function updateCustomer($id, $username, $password, $email) {
     // TODO Implement update function
 }
