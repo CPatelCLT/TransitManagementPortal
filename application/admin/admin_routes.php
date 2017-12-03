@@ -49,20 +49,103 @@ $routes = getAllRoutes();
     <div class="row">
         <?php include("admin_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <div class="row" style="padding-right: 15px">
-                <h2 class="col-9">Routes</h2>
-                <div class="btn-group col-2">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        Filter Roles
+            <div class="row justify-content-between" style="padding-right: 15px">
+                <h2 class="col-5">Routes</h2>
+                <div class="btn-group col-2" role="group" aria-label="Button group with nested dropdown"
+                     style="margin-right: 30px">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addRoute">Add
+                        New Route
                     </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="addRoute" tabindex="-1" role="dialog"
+                     aria-labelledby="addNewRouteLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <form action="#" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add
+                                        New Route</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for="inputFirst" class="col-sm-2 col-form-label">First Name</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="inputFirst" placeholder="First Name"
+                                                   name="firstName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputLast" class="col-sm-2 col-form-label">Last Name</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="inputLast" placeholder="Last Name"
+                                                   name="lastName">
+                                        </div>
+                                    </div>
+
+<!--                                    <div class="form-group row">-->
+<!--                                        <label class="col-sm-2 col-form-label">Role</label>-->
+<!--                                        <div class="form-check form-check-inline">-->
+<!--                                            <label class="form-check-label">-->
+<!--                                                <input class="form-check-input" type="radio" name="role"-->
+<!--                                                       id="inlineRadio1" value="admin">Admin-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-check form-check-inline">-->
+<!--                                            <label class="form-check-label">-->
+<!--                                                <input class="form-check-input" type="radio" name="role"-->
+<!--                                                       id="inlineRadio2" value="driver">Driver-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-check form-check-inline">-->
+<!--                                            <label class="form-check-label">-->
+<!--                                                <input class="form-check-input" type="radio" name="role"-->
+<!--                                                       id="inlineRadio3" value="mechanic">Mechanic-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <script src="//rubaxa.github.io/Sortable/Sortable.js"></script>
+                                    <div class="form-group row">
+                                        <label for="currentStops" class="col-sm-6 col-form-label">Current Stops</label>
+                                        <label for="availableStops" class="col-sm-6 col-form-label">Available Stops</label>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <div id="currentStops" class="list-group border-light" style="padding:20px;">
+                                                <div class="list-group-item">Charlotte</div>
+                                                <div class="list-group-item">NYC</div>
+                                                <div class="list-group-item">DC</div>
+                                                <div class="list-group-item">Miami</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div id="availableStops" class="list-group">
+                                                <div class="list-group-item">Denver</div>
+                                                <div class="list-group-item">Austin</div>
+                                                <div class="list-group-item">Seattle</div>
+                                                <div class="list-group-item">San Francisco</div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            Sortable.create(currentStops, { group:"stops" });
+                                            Sortable.create(availableStops, { group:"stops" });
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button name="action" value="add" type="submit" class="btn btn-primary">Add Route
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-success col-1">Add New</button>
             </div>
             <hr/>
             <div class="card-columns">

@@ -42,6 +42,13 @@ if(isset($_POST['type'])) {
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/signin.css">
+
+    <script>
+        if(typeof window.history.pushState == 'function') {
+            window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
+        }
+    </script>
+
     <title>Login</title>
 </head>
 <body style="background-image: url('img/loginBackground.jpg'); background-size: 100% auto;">
