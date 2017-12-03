@@ -44,7 +44,7 @@ if(isset($_GET['bus'])) {
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Mileage:<span class="float-right"><?php echo $bus['mileage']?></span></li>
-                    <li class="list-group-item">Miles to service:<span class="float-right"><?php echo $bus['checkinterval']?></span></li>
+                    <li class="list-group-item">Miles to service:<span class="float-right"><?php echo $bus['mileage']%15000;?></span></li>
                 </ul>
             </div>
             <div class="card border-dark col-4" style="margin-right: 15px;">

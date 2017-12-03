@@ -47,7 +47,7 @@ if(isset($_GET['route'])) {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Distance:<span class="float-right"><?php echo $route['distance']." Miles"?></span></li>
                     <!-- TODO Store the days of week in database -->
-                    <li class="list-group-item">Days of Week:<span class="float-right">All Weekdays</span></li>
+                    <li class="list-group-item">Days of Week:<span class="float-right"><?php echo $route['DoW']?></span></li>
                     <li class="list-group-item">Start Time:<span class="float-right"><?php echo $route['start']?></span></li>
                     <li class="list-group-item">End Time:<span class="float-right"><?php echo $route['stop']?></span></li>
                 </ul>

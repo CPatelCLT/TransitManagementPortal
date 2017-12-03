@@ -49,7 +49,7 @@ if (isset($_SESSION['user'])) {
 <?php include("customer_header.php"); ?>
 
 
-<div class="container-fluid">
+<div class="container-fluid" style="text-align:match-parent;">
     <div class="row">
         <?php include("customer_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
