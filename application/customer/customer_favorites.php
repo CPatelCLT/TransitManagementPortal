@@ -61,10 +61,6 @@ if (isset($_SESSION['user'])) {
             <div class="row" style="padding-right: 15px">
                 <h2 class="col-9">Routes</h2>
                 <div class="btn-group col-2">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        Filter Roles
-                    </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
