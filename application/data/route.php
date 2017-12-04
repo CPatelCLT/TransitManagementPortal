@@ -37,3 +37,12 @@ function getRouteSequence($routeID) {
     $stmt->closeCursor();
     return $routeSequence;
 }
+
+function getAllStops() {
+    global $db;
+    $stmt = $db->prepare('SELECT * FROM Stops');
+    $stmt->execute();
+    $stops = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $stops;
+}
