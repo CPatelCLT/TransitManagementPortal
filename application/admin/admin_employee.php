@@ -1,5 +1,6 @@
 <?php
 require_once('../data/employee.php');
+require_once ('../data/email.php');
 
 session_start();
 if (isset($_SESSION['user'])) {
