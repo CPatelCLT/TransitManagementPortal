@@ -43,6 +43,7 @@ if (isset($_POST['action'])) {
         case "add":
             if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['role']) && isset($_POST['firstName']) && isset($_POST['lastName'])) {
                 $status = insertEmployee($_POST['username'], $_POST['password'], $_POST['email'], $_POST['role'], $_POST['firstName'], $_POST['lastName']);
+                sendMessage($_POST['email'], "Your new account credentials", 'Your credentials to sign into the transit portal are\n Username: '.$_POST["username"].' \n Password: '.$_POST["password"]);
                 //TODO Add status alert/toast
             } else {
                 // TODO Add alert for invalid entry

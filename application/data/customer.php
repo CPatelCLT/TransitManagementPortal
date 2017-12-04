@@ -61,6 +61,27 @@ function getCustomerFavorites($userID) {
     $stmt->closeCursor();
     return $custFavs;
 }
+
+function deleteFavorite($userID, $routeID){
+    global $db;
+    $stmt = $db->prepare('DELETE FROM CustomerFavorites where routeID = :routeID AND userID=:userID');
+    $stmt->bindParam(':userID', $userID);
+    $stmt->bindParam(':routeID', $routeID);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $stmt->rowCount();
+}
+
+function insertFavorite($userID, $routeID) {
+    global $db;
+    $stmt = $db->prepare("INSERT INTO CustomerFavorites (userID, routeID) VALUES (:userID, :routeID)");
+    $stmt->bindParam(':userID', $userID);
+    $stmt->bindParam(':routeID', $routeID);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $db->lastInsertID();
+}
+
 function updateCustomer($id, $username, $password, $email) {
     // TODO Implement update function
 }

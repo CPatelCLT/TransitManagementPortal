@@ -59,7 +59,7 @@ echo '</div>
 <div class="modal-footer">
     <input type="hidden" name="employeeID" value="' . $user['userID'] . '">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button name="action" value="update" type="submit" class="btn btn-primary">Update Employee</button>
+    <button name="action" value="update" type="submit" class="btn btn-primary">Update Profile</button>
 </div>
 </form>
 </div>

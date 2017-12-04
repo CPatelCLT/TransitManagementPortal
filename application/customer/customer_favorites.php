@@ -6,12 +6,116 @@ session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
     $userID = $user['userID'];
-    $favorites = getCustomerFavorites($userID);
     if (isset($user['role'])) {
         header("Location:../index.php?logout=true");
     }
 } else {
     header("Location: ../index.php");
+}
+
+$favorites = getCustomerFavorites($userID);
+
+
+if (isset($_GET['route'])) {
+    showFavorite($_GET['route']);
+}
+
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+    switch ($action) {
+        case "add":
+            if (isset($_POST['routeID'])) {
+                $status = insertFavorite($user['userID'],$_POST['routeID']);
+                //TODO Add status alert/toast
+                header("Refresh:0");
+            } else {
+                // TODO Add alert for invalid entry
+            }
+            break;
+        case "delete":
+            $status = deleteFavorite($user['userID'],$_POST['routeID']);
+            //TODO Add status alert/toast
+            header("Refresh:0");
+            break;
+    }
+}
+
+function showFavorite($routeID)
+{
+    $route = getRouteByID($routeID);
+    $stops = getRouteSequence($routeID);
+    echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="showRoute">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="#" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Favorited Route</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="inputBusNo" class="col-sm-4">Route Name</label>
+                        <div class="col-sm-8">
+                            '.$route['name'].'
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputBusNo" class="col-sm-4">Route Number</label>
+                        <div class="col-sm-8">
+                            '.$route['routeID'].'
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMileage" class="col-sm-4">Days of Week</label>
+                        <div class="col-sm-6">
+                            '.$route['DoW'].'
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="inputMileage" class="col-sm-4">Start Time</label>
+                        <div class="col-sm-6">
+                            '.$route['start'].'
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMileage" class="col-sm-4">End Time</label>
+                        <div class="col-sm-6">
+                            '.$route['stop'].'
+                        </div>
+                    </div>
+                                    <div class="form-group row">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center" style="font-size:2em;">Route Stops</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>';
+                                                foreach ($stops as $stop) {
+                                                    echo '<tr class="text-center"><td>'.$stop['name'].'</td></tr>';
+                                                }
+                                            echo '</tbody>
+                                        </table>
+                                    </div>';
+    echo '</div>
+<div class="modal-footer">
+    <input type="hidden" name="routeID" value="' . $route['routeID'] . '">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button name="action" value="delete" type="submit" class="btn btn-primary">Remove Favorite</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script>
+    $("#showRoute").modal("show")
+</script>';
 }
 ?>
 
@@ -23,7 +127,11 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="../css/sticky-footer.css">
-
+    <script>
+        if(typeof window.history.pushState == 'function') {
+            window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
+        }
+    </script>
     <!-- TODO Make column change work... -->
     <style>
         @include "../css/bootstrap.css";
@@ -50,105 +158,6 @@ if (isset($_SESSION['user'])) {
     <title>Dashboard</title>
 </head>
 <body>
-<!--TODO fix the card modal-->
-<div class="modal fade" id="addRoute" tabindex="-1" role="dialog"
-     aria-labelledby="addNewRouteLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg w-75" role="document">
-        <div class="modal-content">
-            <form action="#" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add
-                        New Route</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <label for="inputFirst" class="col-sm-2 col-form-label">First Name</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" id="inputFirst" placeholder="First Name"
-                                   name="firstName">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputLast" class="col-sm-2 col-form-label">Last Name</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" id="inputLast" placeholder="Last Name"
-                                   name="lastName">
-                        </div>
-                    </div>
-                    <script src="//rubaxa.github.io/Sortable/Sortable.js"></script>
-
-                    <div class="form-group row">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th class="text-center">Current Stops</th>
-                                <th class="text-center">Available Stops</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><div id="currentStops" class="list-group border-light" style="padding:20px;">
-                                        <!--                                                        <div class="list-group-item">Charlotte</div>-->
-                                        <!--                                                        <div class="list-group-item">NYC</div>-->
-                                        <!--                                                        <div class="list-group-item">DC</div>-->
-                                        <!--                                                        <div class="list-group-item">Miami</div>-->
-                                    </div></td>
-                                <td><div id="availableStops" class="list-group"  style="padding:20px;">
-                                        <?php
-                                        foreach($stops as $stop) {
-                                            echo '<div class="list-group-item" data-id="'.$stop['stopID'].'">'.$stop['name'].'</div>';
-                                        }
-                                        ?>
-                                    </div></td>
-                            </tr>
-
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" id="stops" name="stops" value=""/>
-                    <button name="action" value="add" type="submit" class="btn btn-primary">Add Route
-                    </button>
-                </div>
-            </form>
-            <script>
-                Sortable.create(currentStops, { group:"stops",
-                    store: {
-                        /**
-                         * Get the order of elements. Called once during initialization.
-                         * @param   {Sortable}  sortable
-                         * @returns {Array}
-                         */
-                        get: function (sortable) {
-                            var order = localStorage.getItem(sortable.options.group.name);
-                            return order ? order.split('|') : [];
-                        },
-
-                        /**
-                         * Save the order of elements. Called onEnd (when the item is dropped).
-                         * @param {Sortable}  sortable
-                         */
-                        set: function (sortable) {
-                            var order = sortable.toArray();
-                            document.getElementById('stops').setAttribute('value', sortable.toArray());
-                            localStorage.setItem(sortable.options.group.name, order.join('|'));
-                        }
-                    }
-
-                });
-
-                Sortable.create(availableStops, { group:"stops" });
-            </script>
-        </div>
-    </div>
-</div>
-
 <?php include("customer_header.php"); ?>
 
 
@@ -156,13 +165,48 @@ if (isset($_SESSION['user'])) {
     <div class="row">
         <?php include("customer_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <div class="row" style="padding-right: 15px">
-                <h2 class="col-9">Routes</h2>
-                <div class="btn-group col-2">
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+            <div class="row justify-content-between" style="padding-right: 15px">
+                <h2 class="col-5">Favorite Routes</h2>
+                <div class="btn-group col-2" role="group" aria-label="Button group with nested dropdown"
+                     style="margin-right: 30px">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addFav">Add
+                        Favorite
+                    </button>
+                </div>
+                <!-- Modal -->
+                <!-- TODO Change this to be for buses -->
+                <div class="modal fade" id="addFav" tabindex="-1" role="dialog"
+                     aria-labelledby="addNewBusLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <form action="#" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add New Favorite</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for="inputRoute" class="col-sm-2 col-form-label">Route Name</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="inputRoute" name="routeID">
+                                                <?php
+                                                foreach (getAllRoutes() as $route) {
+                                                    echo '<option value="'.$route['routeID'].'">'.$route['name'].'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button name="action" value="add" type="submit" class="btn btn-primary">Add Favorite
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,11 +217,11 @@ if (isset($_SESSION['user'])) {
                 <!-- TODO Add pill for if route is active right now or not -->
                 <?php
                 foreach ($favorites as $favorite) {
-                    echo '<div class="col-4"><a href=?route=' . $favorite['routeID'] . '><div class="card">
+                    echo '<div class="col-6"><a href=?route=' . $favorite['routeID'] . '><div class="card">
                     <img class="card-img-top rounded" src="../img/rte' . sprintf('%03d', $favorite['routeID']) . '.jpg" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">Route  ' . $favorite['routeID'] . '</h4>
-                        <p class="card-text">Days of week: M,W,F</p>
+                        <h4 class="card-title">' . $favorite['name'] . ' Route</h4>
+                        <p class="card-text">Days of week: <br/>' . $favorite['DoW'] . '</p>
                     </div>
                 </div></a></div>';
                 }

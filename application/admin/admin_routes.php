@@ -81,19 +81,53 @@ $stops = getAllStops();
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group row">
-                                        <label for="inputFirst" class="col-sm-2 col-form-label">First Name</label>
+                                        <label for="inputName" class="col-sm-2 col-form-label">Route Name</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="inputFirst" placeholder="First Name"
-                                                   name="firstName">
+                                            <input class="form-control" id="inputName" placeholder="Route Name"
+                                                   name="name">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputLast" class="col-sm-2 col-form-label">Last Name</label>
+                                        <label for="inputDist" class="col-sm-2 col-form-label">Distance</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="inputLast" placeholder="Last Name"
-                                                   name="lastName">
+                                            <input class="form-control" id="inputDist" placeholder="Distance in Miles"
+                                                   name="dist">
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <div class='input-group date' id='start'>
+                                            <input type='text' class="form-control" name="startTime"/>
+                                            <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class='input-group date' id='end'>
+                                            <input type='text' class="form-control" name="endTime"/>
+                                            <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            $('#start').datetimepicker();
+                                            $('#end').datetimepicker({
+                                                useCurrent: false //Important! See issue #1075
+                                            });
+                                            $("#start").on("dp.change", function (e) {
+                                                $('#end').data("DateTimePicker").minDate(e.date);
+                                            });
+                                            $("#end").on("dp.change", function (e) {
+                                                $('#start').data("DateTimePicker").maxDate(e.date);
+                                            });
+                                        });
+                                    </script>
+
                                     <script src="//rubaxa.github.io/Sortable/Sortable.js"></script>
 
                                     <div class="form-group row">
@@ -107,15 +141,11 @@ $stops = getAllStops();
                                             <tbody>
                                             <tr>
                                                 <td><div id="currentStops" class="list-group border-light" style="padding:20px;">
-<!--                                                        <div class="list-group-item">Charlotte</div>-->
-<!--                                                        <div class="list-group-item">NYC</div>-->
-<!--                                                        <div class="list-group-item">DC</div>-->
-<!--                                                        <div class="list-group-item">Miami</div>-->
                                                     </div></td>
                                                 <td><div id="availableStops" class="list-group"  style="padding:20px;">
                                                         <?php
                                                         foreach($stops as $stop) {
-                                                            echo '<div class="list-group-item" data-id="'.$stop['stopID'].'">'.$stop['name'].'</div>';
+                                                            echo '<div class="list-group-item text-center" data-id="'.$stop['stopID'].'">'.$stop['name'].'</div>';
                                                         }
                                                         ?>
                                                     </div></td>
@@ -155,6 +185,8 @@ $stops = getAllStops();
                                             document.getElementById('stops').setAttribute('value', sortable.toArray());
                                             localStorage.setItem(sortable.options.group.name, order.join('|'));
                                         }
+                                    },
+                                    onAdd: function (/**Event*/evt) {
                                     }
 
                                 });
