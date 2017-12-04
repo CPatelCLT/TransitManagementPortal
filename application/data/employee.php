@@ -75,6 +75,7 @@ function updateEmployee($id, $username, $password, $email, $role, $firstname, $l
     $stmt->execute();
     $stmt->closeCursor();
     return $stmt->rowCount();
+    //$_POST['employeeID'], $_POST['username'], $_POST['password'], $_POST['email'], $user['role'], $_POST['firstName'], $_POST['lastName']
 }
 function insertEmployee($username, $password, $email, $role, $firstname, $lastname) {
     global $db;

@@ -14,6 +14,7 @@ if (isset($_GET['bus'])) {
 
 if(isset($_POST['action'])) {
     $status = updateJob($_POST['maintID'], $user['employeeID'], "claim");
+    maintainBus($_POST['busID'], 0);
 }
 
 $jobs = getAllPending();
@@ -93,6 +94,7 @@ $jobs = getAllPending();
                         <td>' . $job['maintItem'] . '</td>
                         <td>
                                 <input type="hidden" name="maintID" value="'.$job['maintenanceID'].'"/>
+                                <input type="hidden" name="busID" value="'.$job['busID'].'"/>
                                 <button class="btn btn-outline-success my-2 my-sm-0" name="action" value="claim">Claim</button>
                             
                         </td>

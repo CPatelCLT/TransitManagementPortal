@@ -1,4 +1,5 @@
 <?php
+include ("../data/employee.php");
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -8,6 +9,25 @@ if (isset($_SESSION['user'])) {
 } else {
     header("Location: ../index.php");
 }
+
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+    switch ($action) {
+        case "update":
+            if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($user['role']) && isset($_POST['firstName']) && isset($_POST['lastName'])) {
+
+                $status = updateEmployee($user['employeeID'], $_POST['username'], $_POST['password'], $_POST['email'], $user['role'], $_POST['firstName'], $_POST['lastName']);
+                $_SESSION['user'] = getEmployeeByID($user['employeeID']);
+
+                //TODO Add status alert/toast
+                header("Refresh:0");
+            } else {
+                // TODO Add alert for invalid entry
+            }
+            break;
+    }
+}
+$employee=getEmployeeByID($user['employeeID']);
 
 echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="showEmployee">
     <div class="modal-dialog modal-lg">
@@ -23,38 +43,38 @@ echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" ar
                     <div class="form-group row">
                         <label for="inputFirst" class="col-sm-2 col-form-label">First Name</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="inputFirst" placeholder="First Name" name="firstName" value="' . $user['firstname'] . '">
+                            <input class="form-control" id="inputFirst" placeholder="First Name" name="firstName" value="' . $employee['firstname'] . '">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputLast" class="col-sm-2 col-form-label">Last Name</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="inputLast" placeholder="Last Name" name="lastName" value="' . $user['lastname'] . '">
+                            <input class="form-control" id="inputLast" placeholder="Last Name" name="lastName" value="' . $employee['lastname'] . '">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="inputUsername" placeholder="Username" name="username" value="' . $user['username'] . '">
+                            <input class="form-control" id="inputUsername" placeholder="Username" name="username" value="' . $employee['username'] . '">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword" placeholder="Password" name="password" value="' . $user['password'] . '">
+                            <input type="text" class="form-control" id="inputPassword" placeholder="Password" name="password" value="' . $employee['password'] . '">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" value="' . $user['email'] . '">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" value="' . $employee['email'] . '">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Role</label>';
-switch ($user['role']) {
+switch ($employee['role']) {
     case "admin":
         echo '<div class="form-check form-check-inline">
                                       <label class="form-check-label">
@@ -110,14 +130,14 @@ switch ($user['role']) {
 echo '</div>
 </div>
 <div class="modal-footer">
-    <input type="hidden" name="employeeID" value="' . $user['employeeID'] . '">
+    <input type="hidden" name="employeeID" value="' . $employee['employeeID'] . '">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <button name="action" value="update" type="submit" class="btn btn-primary">Update Employee</button>
 </div>
 </form>
 </div>
 </div>
-</div>'
+</div>';
 ?>
 
 <!DOCTYPE html>

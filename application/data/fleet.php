@@ -56,6 +56,15 @@ function updateBus($busID, $mileage) {
     $stmt->closeCursor();
     return $stmt->rowCount();
 }
+function maintainBus($busID, $active) {
+    global $db;
+    $stmt = $db->prepare("UPDATE Fleet SET active=:active WHERE busID=:busID");
+    $stmt->bindParam(':busID', $busID);
+    $stmt->bindParam(':active', $active);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $stmt->rowCount();
+}
 function insertBus($mileage) {
     global $db;
     $stmt = $db->prepare("INSERT INTO Fleet (active, mileage) VALUES ('1', :mileage)");

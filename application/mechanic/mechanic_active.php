@@ -14,6 +14,7 @@ if (isset($_GET['bus'])) {
 
 if(isset($_POST['action'])) {
     $status = updateJob($_POST['maintID'], "1", "complete");
+    maintainBus($_POST['busID'], 1);
 }
 
 $jobs = getAllActive($user['employeeID']);
@@ -93,6 +94,7 @@ $jobs = getAllActive($user['employeeID']);
                         <td>' . $job['maintItem'] . '</td>
                         <td>
                                 <input type="hidden" name="maintID" value="'.$job['maintenanceID'].'"/>
+                                <input type="hidden" name="busID" value="'.$job['busID'].'"/>
                                 <button class="btn btn-outline-success my-2 my-sm-0" name="action" value="complete">Complete</button>
                             
                         </td>

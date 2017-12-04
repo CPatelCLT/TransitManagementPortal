@@ -17,6 +17,7 @@ $buses = getBusesByActive("1");
     if (isset($_POST['busID']) && isset($_POST['reason'])) {
         $maintID = addJob($_POST['busID'], $_POST['reason']);
         $status = updateJob($maintID,$user['employeeID'], 'claim');
+        maintainBus($_POST['busID'], 0);
         if($status == 1){
             header("Location:mechanic_active.php");
         }
