@@ -2,11 +2,16 @@
 
 require_once('../data/route.php');
 require_once('../data/customer.php');
-
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    $favorites = getCustomerFavorites($user['userID']);
+    $userID = $user['userID'];
+    $favorites = getCustomerFavorites($userID);
+    if (isset($user['role'])) {
+        header("Location:../index.php?logout=true");
+    }
+} else {
+    header("Location: ../index.php");
 }
 ?>
 

@@ -2,9 +2,11 @@
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    echo $user['employeeID'];
+    if ($user['role'] != 'driver') {
+        header("Location:../index.php?logout=true");
+    }
 } else {
-    //header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 include ("../data/route.php");

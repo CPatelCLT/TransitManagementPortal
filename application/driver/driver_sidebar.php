@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: benjaminlee
- * Date: 11/14/17
- * Time: 7:57 PM
- */?>
+?>
 
 
 <!DOCTYPE html>

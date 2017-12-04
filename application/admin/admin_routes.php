@@ -1,5 +1,13 @@
 <?php
-
+session_start();
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    if ($user['role'] != 'admin') {
+        header("Location:../index.php?logout=true");
+    }
+} else {
+    header("Location: ../index.php");
+}
 require_once('../data/route.php');
 
 $routes = getAllRoutes();

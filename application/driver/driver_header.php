@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Chirag
- * Date: 11/20/2017
- * Time: 1:14 AM
- */
 ?>
 <header>
     <nav class="navbar navbar-dark fixed-top bg-dark">
