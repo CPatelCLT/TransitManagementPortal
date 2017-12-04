@@ -47,7 +47,7 @@ function showBus($busID)
                     </div>';
     echo '</div>
 <div class="modal-footer">
-<input type="hidden" name="busID" value="'.$bus['busID'].'"
+<input type="hidden" name="busID" value="'.$bus['busID'].'"/>
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <button type="submit" class="btn btn-primary">Add</button>
 </div>
@@ -82,31 +82,6 @@ function showBus($busID)
             window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
         }
     </script>
-
-
-    <!-- TODO Make column change work... -->
-    <style>
-        @include "../css/bootstrap.css";
-        .card-columns {
-
-        @include media-breakpoint-only(xl) {
-            column-count: 5;
-        }
-        @include media-breakpoint-only(lg) {
-            column-count: 4;
-        }
-        @include media-breakpoint-only(md) {
-            column-count: 3;
-        }
-        @include media-breakpoint-only(sm) {
-            column-count: 2;
-        }
-        column-count:4;
-        }
-        .card {
-            height = 100px;
-        }
-    </style>
     <title>Dashboard</title>
 </head>
 <body>
@@ -120,8 +95,6 @@ function showBus($busID)
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <div class="row justify-content-between" style="padding-right: 15px">
                 <h2 class="col-5">Fleet</h2>
-                <!-- Modal -->
-                <!-- TODO Change this to be for buses -->
             </div>
             <hr/>
             <div class="card-columns">
