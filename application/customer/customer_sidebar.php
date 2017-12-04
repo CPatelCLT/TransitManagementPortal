@@ -26,7 +26,7 @@
         // Select an a element that has the matching href and apply a class of 'active'. Also prepend a - to the content of the link
         var url = window.location.href;
         //alert(url);
-        const regex = /[a-zA-Z0-9_]+\.(php)$/g;
+        const regex = /[a-zA-Z0-9_]+\.(php)/g;
         var match = regex.exec(url);
         //alert(match[0]);
         $('a[href="' + match[0] + '"]').addClass('active');

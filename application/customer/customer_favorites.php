@@ -69,20 +69,22 @@ if (isset($_SESSION['user'])) {
                 <button class="btn btn-success col-1">Add New</button>
             </div>
             <hr/>
-            <div class="card-columns">
+            <div class="container-fluid">
+                <div class="row">
                 <!-- TODO Change color of card text back to normal text instead of link -->
                 <!-- TODO Add pill for if route is active right now or not -->
                 <?php
                 foreach ($favorites as $favorite) {
-                    echo '<a href=?route=' . $favorite['routeID'] . '><div class="card">
+                    echo '<div class="col-4"><a href=?route=' . $favorite['routeID'] . '><div class="card">
                     <img class="card-img-top rounded" src="../img/rte' . sprintf('%03d', $favorite['routeID']) . '.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">Route  ' . $favorite['routeID'] . '</h4>
                         <p class="card-text">Days of week: M,W,F</p>
                     </div>
-                </div></a>';
+                </div></a></div>';
                 }
                 ?>
+                </div>
             </div>
 
         </main>

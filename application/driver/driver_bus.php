@@ -14,6 +14,39 @@ if(isset($_GET['bus'])) {
 } else {
     $bus = getBusByID(getCurrentEmpSchedule($user['employeeID'])['busID']);
 }
+echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="maintenanceRequest">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="#" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Request Maintenance</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="inputBusNo" class="col-sm-2 col-form-label">Bus Number</label>
+                        <div class="col-sm-10">
+                            '.$bus['busID'].'
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMileage" class="col-sm-2 col-form-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea placeholder="Please enter the problem with the bus" style="width:100%" rows="5" ></textarea>
+                        </div>
+                    </div>';
+echo '</div>
+<div class="modal-footer">
+    <input type="hidden" name="busID" value="' . $bus['busID'] . '">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button name="action" value="update" type="submit" class="btn btn-primary">Request Maintenance</button>
+</div>
+</form>
+</div>
+</div>
+</div>'
 
 ?>
 
@@ -38,8 +71,7 @@ if(isset($_GET['bus'])) {
         <div class="row card-group" style="padding-right: 15px; padding-left: 15px;">
             <div class="card border-dark col-8" style="margin-left: 10px;">
                 <div class="card-body align-items-center">
-                    <!-- TODO Add the modal to request maintenance -->
-                    <button class="btn btn-info float-right">Request<br/>Maintenance</button>
+                    <button data-toggle="modal" data-target="#maintenanceRequest" class="btn btn-info float-right">Request<br/>Maintenance</button>
                     <h2 class="card-title"><?php echo "Bus ".$bus['busID']?></h2>
                 </div>
                 <ul class="list-group list-group-flush">
