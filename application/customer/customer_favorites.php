@@ -50,6 +50,104 @@ if (isset($_SESSION['user'])) {
     <title>Dashboard</title>
 </head>
 <body>
+<!--TODO fix the card modal-->
+<div class="modal fade" id="addRoute" tabindex="-1" role="dialog"
+     aria-labelledby="addNewRouteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg w-75" role="document">
+        <div class="modal-content">
+            <form action="#" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add
+                        New Route</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="inputFirst" class="col-sm-2 col-form-label">First Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="inputFirst" placeholder="First Name"
+                                   name="firstName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputLast" class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="inputLast" placeholder="Last Name"
+                                   name="lastName">
+                        </div>
+                    </div>
+                    <script src="//rubaxa.github.io/Sortable/Sortable.js"></script>
+
+                    <div class="form-group row">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Current Stops</th>
+                                <th class="text-center">Available Stops</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><div id="currentStops" class="list-group border-light" style="padding:20px;">
+                                        <!--                                                        <div class="list-group-item">Charlotte</div>-->
+                                        <!--                                                        <div class="list-group-item">NYC</div>-->
+                                        <!--                                                        <div class="list-group-item">DC</div>-->
+                                        <!--                                                        <div class="list-group-item">Miami</div>-->
+                                    </div></td>
+                                <td><div id="availableStops" class="list-group"  style="padding:20px;">
+                                        <?php
+                                        foreach($stops as $stop) {
+                                            echo '<div class="list-group-item" data-id="'.$stop['stopID'].'">'.$stop['name'].'</div>';
+                                        }
+                                        ?>
+                                    </div></td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="hidden" id="stops" name="stops" value=""/>
+                    <button name="action" value="add" type="submit" class="btn btn-primary">Add Route
+                    </button>
+                </div>
+            </form>
+            <script>
+                Sortable.create(currentStops, { group:"stops",
+                    store: {
+                        /**
+                         * Get the order of elements. Called once during initialization.
+                         * @param   {Sortable}  sortable
+                         * @returns {Array}
+                         */
+                        get: function (sortable) {
+                            var order = localStorage.getItem(sortable.options.group.name);
+                            return order ? order.split('|') : [];
+                        },
+
+                        /**
+                         * Save the order of elements. Called onEnd (when the item is dropped).
+                         * @param {Sortable}  sortable
+                         */
+                        set: function (sortable) {
+                            var order = sortable.toArray();
+                            document.getElementById('stops').setAttribute('value', sortable.toArray());
+                            localStorage.setItem(sortable.options.group.name, order.join('|'));
+                        }
+                    }
+
+                });
+
+                Sortable.create(availableStops, { group:"stops" });
+            </script>
+        </div>
+    </div>
+</div>
 
 <?php include("customer_header.php"); ?>
 
@@ -67,7 +165,6 @@ if (isset($_SESSION['user'])) {
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
-                <button class="btn btn-success col-1">Add New</button>
             </div>
             <hr/>
             <div class="container-fluid">
