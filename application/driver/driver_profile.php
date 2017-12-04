@@ -2,8 +2,11 @@
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
+    if ($user['role'] != 'driver') {
+        header("Location:../index.php?logout=true");
+    }
 } else {
-    //header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="showEmployee">

@@ -1,6 +1,13 @@
 <?php
-
-
+session_start();
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    if (isset($user['role'])) {
+        header("Location:../index.php?logout=true");
+    }
+} else {
+    header("Location: ../index.php");
+}
 ?>
 
 

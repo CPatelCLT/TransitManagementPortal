@@ -2,11 +2,16 @@
 
 require_once('../data/route.php');
 require_once('../data/customer.php');
-
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    $favorites = getCustomerFavorites($user['userID']);
+    $userID = $user['userID'];
+    $favorites = getCustomerFavorites($userID);
+    if (isset($user['role'])) {
+        header("Location:../index.php?logout=true");
+    }
+} else {
+    header("Location: ../index.php");
 }
 ?>
 
@@ -56,10 +61,6 @@ if (isset($_SESSION['user'])) {
             <div class="row" style="padding-right: 15px">
                 <h2 class="col-9">Routes</h2>
                 <div class="btn-group col-2">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        Filter Roles
-                    </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
