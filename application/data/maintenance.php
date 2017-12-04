@@ -54,3 +54,14 @@ function addJob($busID, $desc) {
     $stmt->closeCursor();
     return $db->lastInsertID();
 }
+
+
+function insertDriverMaint($busID, $desc) {
+    global $db;
+    $stmt = $db->prepare("INSERT INTO Maintenance (busID, maintItem,complete) VALUES (:busID, :desc ,0)");
+    $stmt->bindParam(':busID', $busID);
+    $stmt->bindParam(':desc', $desc);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $db->lastInsertID();
+}

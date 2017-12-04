@@ -44,7 +44,8 @@ if(isset($_GET['route'])) {
         <div class="row card-group" style="padding-right: 15px; padding-left: 15px;">
             <div class="card border-dark col-6" style="margin-left: 10px;">
                 <div class="card-body align-items-center" style="flex: 0;">
-                    <h2 class="card-title"><?php echo "Route ".$route['routeID']?></h2>
+                    <h2 class="card-title"><?php echo $route['name']?></h2>
+                    <h5 class="card-title"><?php echo "Route Number ".$route['routeID']?></h5>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Distance:<span class="float-right"><?php echo $route['distance']." Miles"?></span></li>

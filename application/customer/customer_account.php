@@ -9,7 +9,7 @@ if (isset($_SESSION['user'])) {
     header("Location: ../index.php");
 }
 
-echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="showEmployee">
+echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="showUser">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form action="#" method="post">
@@ -57,7 +57,7 @@ echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" ar
 echo '</div>
 </div>
 <div class="modal-footer">
-    <input type="hidden" name="employeeID" value="' . $user['userID'] . '">
+    <input type="hidden" name="userID" value="' . $user['userID'] . '">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <button name="action" value="update" type="submit" class="btn btn-primary">Update Profile</button>
 </div>
@@ -88,7 +88,7 @@ echo '</div>
         <div class="row card-group" style="padding-right: 15px; padding-left: 15px;">
             <div class="card border-dark col-8" style="margin-left: 10px;">
                 <div class="card-body align-items-center">
-                    <button class="btn btn-info float-right" data-toggle="modal" data-target="#showEmployee">Edit Profile</button>
+                    <button class="btn btn-info float-right" data-toggle="modal" data-target="#showUser">Edit Profile</button>
                     <h2 class="card-title"><?php echo $user['firstname']." ".$user['lastname'] ?></h2>
                 </div>
                 <ul class="list-group list-group-flush">

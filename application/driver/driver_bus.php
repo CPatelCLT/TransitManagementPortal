@@ -1,12 +1,28 @@
 <?php
 include ("../data/fleet.php");
 include ("../data/schedule.php");
+include ("../data/maintenance.php");
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
     echo $user['employeeID'];
 } else {
     //header("Location: ../index.php");
+}
+
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+    switch ($action) {
+        case "add":
+            if (isset($_POST['busID'])) {
+                $status = insertDriverMaint($_POST['busID'], $_POST['desc']);
+                //TODO Add status alert/toast
+                header("Refresh:0");
+            } else {
+                // TODO Add alert for invalid entry
+            }
+            break;
+    }
 }
 
 if(isset($_GET['bus'])) {
@@ -26,22 +42,22 @@ echo '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" ar
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="inputBusNo" class="col-sm-2 col-form-label">Bus Number</label>
+                        <label for="inputBusNo" class="col-sm-2">Bus Number</label>
                         <div class="col-sm-10">
                             '.$bus['busID'].'
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputMileage" class="col-sm-2 col-form-label">Description</label>
+                        <label for="inputDesc" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
-                            <textarea placeholder="Please enter the problem with the bus" style="width:100%" rows="5" ></textarea>
+                            <textarea placeholder="Please enter the problem with the bus" style="width:100%" rows="5" name="desc" id="inputDesc"></textarea>
                         </div>
                     </div>';
 echo '</div>
 <div class="modal-footer">
     <input type="hidden" name="busID" value="' . $bus['busID'] . '">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button name="action" value="update" type="submit" class="btn btn-primary">Request Maintenance</button>
+    <button name="action" value="add" type="submit" class="btn btn-primary">Request Maintenance</button>
 </div>
 </form>
 </div>

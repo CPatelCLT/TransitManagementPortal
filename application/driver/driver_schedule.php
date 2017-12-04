@@ -43,7 +43,7 @@ $nextSchedule = getNextEmpSchedule($user['employeeID']);
                     <li class="list-group-item">Shift Start:<span class="float-right"><?php echo $currSchedule['shiftstart']?></span></li>
                     <li class="list-group-item">Shift End:<span class="float-right"><?php echo $currSchedule['shiftend']?></span></li>
                     <li class="list-group-item">Bus:<?php echo '<a href="driver_bus.php?bus='.$currSchedule['busID'].'" class="float-right">Bus '.$currSchedule['busID'].'</a>';?></li>
-                    <li class="list-group-item">Route:<?php echo '<a href="driver_route.php?route='.$currSchedule['routeID'].'" class="float-right">Route '.$currSchedule['routeID'].'</a>';?></li>
+                    <li class="list-group-item">Route:<?php echo '<a href="driver_route.php?route='.$currSchedule['routeID'].'" class="float-right">'.getRouteByID($currSchedule['routeID'])['name'].'</a>';?></li>
                 </ul>
             </div>
             <div class="card border-dark col-6" style="margin-right: 10px;">
@@ -54,7 +54,7 @@ $nextSchedule = getNextEmpSchedule($user['employeeID']);
                     <li class="list-group-item">Shift Start:<span class="float-right"><?php echo $nextSchedule['shiftstart']?></span></li>
                     <li class="list-group-item">Shift End:<span class="float-right"><?php echo $nextSchedule['shiftend']?></span></li>
                     <li class="list-group-item">Bus:<?php echo '<a href="driver_bus.php?bus='.$nextSchedule['busID'].'" class="float-right">Bus '.$nextSchedule['busID'].'</a>';?></li>
-                    <li class="list-group-item">Route:<?php echo '<a href="driver_route.php?route='.$nextSchedule['routeID'].'" class="float-right">Route '.$nextSchedule['routeID'].'</a>';?></li>
+                    <li class="list-group-item">Route:<?php echo '<a href="driver_route.php?route='.$nextSchedule['routeID'].'" class="float-right">'.getRouteByID($nextSchedule['routeID'])['name'].'</a>';?></li>
                 </ul>
             </div>
         </div>
