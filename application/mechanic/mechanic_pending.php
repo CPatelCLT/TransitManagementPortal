@@ -77,22 +77,21 @@ $jobs = getAllPending();
                 <!-- Modal -->
                 <!-- TODO Change this to be for buses -->
             </div>
-            <hr/>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Bus</th>
-                        <th>Description</th>
+                        <th class="text-center">Bus</th>
+                        <th class="text-justify">Description</th>
                         <th>Claim</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach($jobs as $job) {
                         echo '<tr> <form method="post" action="#">
-                        <td class="align-content-center">' . $job['busID'] . '</td>
+                        <td class="text-center">' . $job['busID'] . '</td>
                         <td>' . $job['maintItem'] . '</td>
-                        <td>
+                        <td class="text-center">
                                 <input type="hidden" name="maintID" value="'.$job['maintenanceID'].'"/>
                                 <input type="hidden" name="busID" value="'.$job['busID'].'"/>
                                 <button class="btn btn-outline-success my-2 my-sm-0" name="action" value="claim">Claim</button>

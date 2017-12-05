@@ -1,5 +1,7 @@
 <?php
 require_once('../data/fleet.php');
+require_once('../data/maintenance.php');
+include ("../data/employee.php");
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -77,7 +79,7 @@ function showBus($busID)
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="inputBusNo" class="col-sm-2 col-form-label">Bus Number</label>
+                        <label for="inputBusNo" class="col-sm-2">Bus Number</label>
                         <div class="col-sm-10">
                             '.$bus['busID'].'
                         </div>
@@ -88,7 +90,46 @@ function showBus($busID)
                             <input class="form-control" id="inputMileage" placeholder="mileage"
                                    name="mileage" value="'.$bus['mileage'].'">
                         </div>
+                    </div><br/>';
+
+                    $maintList = getBusMaint($busID);
+                    if (!empty($maintList)) {
+                        echo '<hr/>
+                    <div class="form-group row">
+                        <h5 for="inputMileage" class="col-sm-6">Maintenance History</h5>
+                    </div><div class="form-group row">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Item</th>
+                                    <th class="text-justify">Description</th>
+                                    <th class="text-justify">Complete</th>
+                                    <th class="text-justify">Mechanic</th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                        $counter = 1;
+                        foreach ($maintList as $maint) {
+                            echo '<tr>
+                                        <td class="text-center">' . $counter . '</td>
+                                        <td>' . $maint['maintItem'] . '</td>';
+                            if ($maint['complete'] = 0) {
+                                echo '<td>Complete</td>';
+                            } else {
+                                echo '<td>Not Complete</td>';
+                            }
+                            if(!is_null($maint['employeeID'])) {
+                                echo '<td><a href="admin_employee.php?employee='.$maint['employeeID'].'">'.getEmployeeByID($maint['employeeID'])['username'].'</a></td>';
+                            } else {
+                                echo '<td>Not Assigned</td>';
+                            }
+                            echo '</tr>';
+                            $counter++;
+                        }
+                        echo '</tbody>
+                        </table>
                     </div>';
+                    }
     echo '</div>
 <div class="modal-footer">
     <input type="hidden" name="busID" value="' . $bus['busID'] . '">

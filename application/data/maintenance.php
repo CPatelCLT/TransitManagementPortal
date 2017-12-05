@@ -31,10 +31,10 @@ function updateJob($maintID, $value, $type) {
     global $db;
     switch ($type) {
         case "claim":
-        $stmt = $db->prepare("UPDATE Maintenance SET employeeID=:value WHERE maintenanceID=:maintID");
-        $stmt->bindParam(':maintID', $maintID);
-        $stmt->bindParam(':value', $value);
-        break;
+            $stmt = $db->prepare("UPDATE Maintenance SET employeeID=:value WHERE maintenanceID=:maintID");
+            $stmt->bindParam(':maintID', $maintID);
+            $stmt->bindParam(':value', $value);
+            break;
         case "complete":
             $stmt = $db->prepare("UPDATE Maintenance SET complete=:value WHERE maintenanceID=:maintID");
             $stmt->bindParam(':maintID', $maintID);
@@ -45,6 +45,7 @@ function updateJob($maintID, $value, $type) {
     $stmt->closeCursor();
     return $stmt->rowCount();
 }
+
 function addJob($busID, $desc) {
     global $db;
     $stmt = $db->prepare("INSERT INTO Maintenance (busID, maintItem,complete) VALUES (:busID, :desc ,0)");
@@ -55,7 +56,6 @@ function addJob($busID, $desc) {
     return $db->lastInsertID();
 }
 
-
 function insertDriverMaint($busID, $desc) {
     global $db;
     $stmt = $db->prepare("INSERT INTO Maintenance (busID, maintItem,complete) VALUES (:busID, :desc ,0)");
@@ -64,4 +64,14 @@ function insertDriverMaint($busID, $desc) {
     $stmt->execute();
     $stmt->closeCursor();
     return $db->lastInsertID();
+}
+
+function getBusMaint($busID) {
+    global $db;
+    $stmt = $db->prepare('SELECT * FROM Maintenance where busID = :busID');
+    $stmt->bindParam(':busID', $busID);
+    $stmt->execute();
+    $jobs = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $jobs;
 }
