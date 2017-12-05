@@ -7,6 +7,19 @@
  */
 
 require_once('database.php');
+function insertSchedule($employeeID, $busID, $routeID, $shiftstart, $shiftend)
+{
+    global $db;
+    $stmt = $db->prepare("INSERT INTO Schedule (employeeID, busID, routeID, shiftstart, shiftend) VALUES (:employeeID, :busID, :routeID, :shiftstart, :shiftend)");
+    $stmt->bindParam(':employeeID', $employeeID);
+    $stmt->bindParam(':busID', $busID);
+    $stmt->bindParam(':routeID', $routeID);
+    $stmt->bindParam(':shiftstart', $shiftstart);
+    $stmt->bindParam(':shiftend', $shiftend);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $db->lastInsertID();
+}
 
 function getAllSchedule()
 {
