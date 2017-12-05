@@ -40,6 +40,7 @@ if (isset($_POST['action'])) {
         case "add":
             if (isset($_POST['mileage'])) {
                 $status = insertBus($_POST['mileage']);
+                header("Refresh:0");
                 //TODO Add status alert/toast
             } else {
                 // TODO Add alert for invalid entry
@@ -48,7 +49,7 @@ if (isset($_POST['action'])) {
         case "delete":
             $status = deleteBus($_POST['busID']);
             //TODO Add status alert/toast
-            header("Refresh:0");
+
             break;
         case "update":
             if (isset($_POST['mileage']) && isset($_POST['busID'])) {
