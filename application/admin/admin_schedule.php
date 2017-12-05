@@ -33,7 +33,6 @@ if (isset($_POST['action'])) {
             break;
     }
 }
-
 $schedules = getAllSchedule();
 ?>
 
@@ -45,30 +44,6 @@ $schedules = getAllSchedule();
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="../css/sticky-footer.css">
-
-    <!-- TODO Make column change work... -->
-    <style>
-        @include "../css/bootstrap.css";
-        .card-columns {
-
-        @include media-breakpoint-only(xl) {
-            column-count: 5;
-        }
-        @include media-breakpoint-only(lg) {
-            column-count: 4;
-        }
-        @include media-breakpoint-only(md) {
-            column-count: 3;
-        }
-        @include media-breakpoint-only(sm) {
-            column-count: 2;
-        }
-        column-count:4;
-        }
-        .card {
-            height = 100px;
-        }
-    </style>
     <title>Dashboard</title>
 </head>
 <body>
@@ -81,7 +56,7 @@ $schedules = getAllSchedule();
         <?php include("admin_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <div class="row justify-content-between" style="padding-right: 15px">
-                <h2 class="col-5">Fleet</h2>
+                <h2 class="col-5">Schedule</h2>
                 <div class="btn-group col-2" role="group" aria-label="Button group with nested dropdown"
                      style="margin-right: 30px">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addSchedule">Create Schedule</button>
