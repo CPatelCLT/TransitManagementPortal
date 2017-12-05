@@ -59,3 +59,11 @@ function getNextEmpSchedule($employeeID) {
     $stmt->closeCursor();
     return $schedule[1];
 }
+function deleteSchedule($scheduleID){
+    global $db;
+    $stmt = $db->prepare('DELETE FROM Schedule where scheduleID = :scheduleID');
+    $stmt->bindParam(':scheduleID', $scheduleID);
+    $stmt->execute();
+    $stmt->closeCursor();
+    return $stmt->rowCount();
+}

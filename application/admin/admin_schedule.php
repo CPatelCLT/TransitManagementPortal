@@ -14,6 +14,26 @@ if (isset($_SESSION['user'])) {
     header("Location: ../index.php");
 }
 
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+    switch ($action) {
+        case "add":
+            if (true) {
+                $status = insertSchedule($_POST['employeeID'],$_POST['busID'],$_POST['routeID'],$_POST['shiftstart'],$_POST['shiftend']);
+                //TODO Add status alert/toast
+                header("Refresh:0");
+            } else {
+                // TODO Add alert for invalid entry
+            }
+            break;
+        case "delete":
+            $status = deleteSchedule($_POST['scheduleID']);
+            //TODO Add status alert/toast
+            header("Refresh:0");
+            break;
+    }
+}
+
 $schedules = getAllSchedule();
 ?>
 
@@ -117,10 +137,11 @@ $schedules = getAllSchedule();
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputMileage" class="col-sm-2 col-form-label">Start Time</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" id="inputMileage" placeholder="mileage"
-                                                   name="mileage">
-                                        </div>
+                                        <input class="form-control col-8" type="datetime-local" name="shiftstart"/>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputMileage" class="col-sm-2 col-form-label">End Time</label>
+                                        <input class="form-control col-8" type="datetime-local" name="shiftend"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -132,7 +153,6 @@ $schedules = getAllSchedule();
                     </div>
                 </div>
             </div>
-            <hr/>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -158,8 +178,8 @@ $schedules = getAllSchedule();
                         <td>' . $schedule['shiftend'] . '</td>
                         <td>
                             <form method="post">
-                                <button class="btn btn-outline-success my-2 my-sm-0">Update</button>
-                                <button class="btn btn-outline-success my-2 my-sm-0">Delete</button>
+                                <input type="hidden" name="scheduleID" value="'.$schedule['scheduleID'].'"/>
+                                <button class="btn btn-outline-success my-2 my-sm-0" name="action" value="delete">Delete</button>
                             </form>
                         </td>
                     </tr>';
