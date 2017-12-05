@@ -1,4 +1,9 @@
 <?php
+require_once('../data/schedule.php');
+require_once('../data/employee.php');
+require_once('../data/route.php');
+require_once('../data/fleet.php');
+
 session_start();
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -8,8 +13,7 @@ if (isset($_SESSION['user'])) {
 } else {
     header("Location: ../index.php");
 }
-require_once('../data/schedule.php');
-require_once('../data/employee.php');
+
 $schedules = getAllSchedule();
 ?>
 
@@ -56,20 +60,77 @@ $schedules = getAllSchedule();
     <div class="row">
         <?php include("admin_sidebar.php"); ?>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <div class="row" style="padding-right: 15px">
-                <h2 class="col-9">Schedule</h2>
-                <div class="btn-group col-2">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        Filter
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+            <div class="row justify-content-between" style="padding-right: 15px">
+                <h2 class="col-5">Fleet</h2>
+                <div class="btn-group col-2" role="group" aria-label="Button group with nested dropdown"
+                     style="margin-right: 30px">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addSchedule">Create Schedule</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="addSchedule" tabindex="-1" role="dialog"
+                     aria-labelledby="addNewScheduleLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <form action="#" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Create Schedule</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for="inputRoute" class="col-sm-2 col-form-label">Select Route</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="inputRoute" name="routeID">
+                                                <?php
+                                                foreach (getAllRoutes() as $route) {
+                                                    echo '<option value="'.$route['routeID'].'">'.$route['name'].'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputRoute" class="col-sm-2 col-form-label">Select Driver</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="inputRoute" name="employeeID">
+                                                <?php
+                                                foreach (getEmployeesByRole('driver') as $driver) {
+                                                    echo '<option value="'.$driver['employeeID'].'">'.$driver['username'].'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputRoute" class="col-sm-2 col-form-label">Select Bus</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="inputRoute" name="busID">
+                                                <?php
+                                                foreach (getBusesByActive(1) as $bus) {
+                                                    echo '<option value="'.$bus['busID'].'">Bus '.$bus['busID'].'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputMileage" class="col-sm-2 col-form-label">Start Time</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="inputMileage" placeholder="mileage"
+                                                   name="mileage">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button name="action" value="add" type="submit" class="btn btn-primary">Create Schedule</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-success col-1">Add New</button>
             </div>
             <hr/>
             <div class="table-responsive">
